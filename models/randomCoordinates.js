@@ -12,13 +12,25 @@ const LOCATIONS = {
     min_longitude: -74011928,
     max_latitude: 40757108,
     max_longitude: -73970028
-  }
+  },
 
+  HONOLULU : {
+    min_latitude: 21.280092,
+    min_longitude: -157.888494,
+    max_latitude: 21.321326,
+    max_longitude: -157.809204
+  },
+
+  LONDON : {
+    min_latitude: 51.434368,
+    min_longitude:  -0.237905,
+    max_latitude: 51.619049,
+    max_longitude: -0.022683
+  }
 }
 
 let randomCity = () => {
   let cities = Object.keys(LOCATIONS);
-
   let randomIndex = Math.floor(Math.random() * cities.length);
 
   return LOCATIONS[cities[randomIndex]];
@@ -30,10 +42,10 @@ let getRandomCoordinates = (city = null) => {
   }
 
   let lat =  Math.floor( Math.random() * (city.max_latitude - city.min_latitude) + city.min_latitude) / 1000000;
-
   let long = Math.floor( Math.random() * (city.max_longitude - city.min_longitude) + city.min_longitude) / 1000000;
 
   return {latitude: lat, longitude: long};
 };
 
-console.log(getRandomCoordinates());
+exports.randomCity = randomCity;
+exports.getRandomCoordinates = getRandomCoordinates;
