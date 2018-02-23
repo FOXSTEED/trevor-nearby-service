@@ -6,12 +6,14 @@ const randomPuppy = require('random-puppy');
 const randomCoordinates = require('./randomCoordinates');
 const Models = require('./models.js');
 
-randomPuppy()
+for(let i = 0; i < 200; i++) {
+
+  randomPuppy()
   .then(url => {
       let coords = randomCoordinates.getRandomCoordinates();
 
       let attraction = {
-        attraction_id: 0,
+        attraction_id: i,
         name: faker.lorem.words(faker.random.number({min:1, max:3})),
         latitude: coords.latitude,
         longitude: coords.longitude,
@@ -33,7 +35,7 @@ randomPuppy()
       let coords = randomCoordinates.getRandomCoordinates();
 
       let hotel = {
-        hotel_id: 0,
+        hotel_id: i,
         name: faker.lorem.words(faker.random.number({min:1, max:3})),
         latitude: coords.latitude,
         longitude: coords.longitude,
@@ -55,7 +57,7 @@ randomPuppy()
       let coords = randomCoordinates.getRandomCoordinates();
 
       let restaurant = {
-        restaurant_id: 0,
+        restaurant_id: i,
         name: faker.lorem.words(faker.random.number({min:1, max:3})),
         latitude: coords.latitude,
         longitude: coords.longitude,
@@ -72,3 +74,4 @@ randomPuppy()
   .catch(err => {
     console.error(err);
   });
+}
