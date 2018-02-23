@@ -35,11 +35,7 @@ let randomCity = () => {
   return LOCATIONS[cities[randomIndex]];
 }
 
-let getRandomCoordinates = (city = null) => {
-  if(!city) {
-    city = randomCity();
-  }
-
+let getRandomCoordinates = (city = randomCity()) => {
   let lat =  Math.floor( Math.random() * (city.max_latitude - city.min_latitude) + city.min_latitude) / 1000000;
   let long = Math.floor( Math.random() * (city.max_longitude - city.min_longitude) + city.min_longitude) / 1000000;
 

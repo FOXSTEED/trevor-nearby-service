@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('postgres://localhost:5432/testdb');
 
-const Restaraunt = sequelize.define('restaurant', {
+const Restaurant = sequelize.define('restaurant', {
   restaurant_id: Sequelize.INTEGER,
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
@@ -39,6 +39,4 @@ const Attraction = sequelize.define('attraction', {
 });
 
 
-exports.Restaurant = Restaraunt;
-exports.Hotel = Hotel;
-exports.Attraction = Attraction;
+module.exports = {Restaurant, Hotel, Attraction};

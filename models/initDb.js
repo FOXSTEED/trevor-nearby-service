@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('postgres://localhost:5432/testdb');
-const Models = require('./models.js');
+const {Restaurant, Hotel, Attraction} = require('./models.js');
 
 sequelize
   .authenticate()
@@ -8,13 +8,13 @@ sequelize
     console.log('Connection has been established successfully.');
   })
   .then(() => {
-    Models.Restaurant.sync();
+    Restaurant.sync();
   })
   .then(() => {
-    Models.Hotel.sync();
+    Hotel.sync();
   })
   .then(() => {
-    Models.Attraction.sync();
+    Attraction.sync();
   })
   .then(() => 
     sequelize.close()
