@@ -15,24 +15,24 @@ const LOCATIONS = {
   },
 
   HONOLULU : {
-    min_latitude: 21.280092,
-    min_longitude: -157.888494,
-    max_latitude: 21.321326,
-    max_longitude: -157.809204
+    min_latitude: 21280092,
+    min_longitude: -157888494,
+    max_latitude: 21321326,
+    max_longitude: -157809204
   },
 
   LONDON : {
-    min_latitude: 51.434368,
-    min_longitude:  -0.237905,
-    max_latitude: 51.619049,
-    max_longitude: -0.022683
+    min_latitude: 51434368,
+    min_longitude:  -207905,
+    max_latitude: 51619049,
+    max_longitude: -32683
   }
 }
 
 let randomCity = () => {
   let cities = Object.keys(LOCATIONS);
   let randomIndex = Math.floor(Math.random() * cities.length);
-
+  console.log(cities[randomIndex])
   return LOCATIONS[cities[randomIndex]];
 }
 
