@@ -32,7 +32,6 @@ const LOCATIONS = {
 let randomCity = () => {
   let cities = Object.keys(LOCATIONS);
   let randomIndex = Math.floor(Math.random() * cities.length);
-  console.log(cities[randomIndex])
   return LOCATIONS[cities[randomIndex]];
 }
 
