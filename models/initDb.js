@@ -14,7 +14,28 @@ const Restaraunt = sequelize.define('restaurant', {
   ranking: Sequelize.INTEGER,
   tags: Sequelize.STRING, //stringified array
   image_url: Sequelize.STRING
+});
 
+const Hotel = sequelize.define('hotel', {
+  hotel_id: Sequelize.INTEGER,
+  latitude: Sequelize.DOUBLE,
+  longitude: Sequelize.DOUBLE,
+  address: Sequelize.STRING,
+  rating: Sequelize.INTEGER,
+  ranking: Sequelize.INTEGER,
+  tags: Sequelize.STRING, //stringified array
+  image_url: Sequelize.STRING
+});
+
+const Attraction = sequelize.define('attraction', {
+  attraction_id: Sequelize.INTEGER,
+  latitude: Sequelize.DOUBLE,
+  longitude: Sequelize.DOUBLE,
+  address: Sequelize.STRING,
+  rating: Sequelize.INTEGER,
+  ranking: Sequelize.INTEGER,
+  tags: Sequelize.STRING, //stringified array
+  image_url: Sequelize.STRING
 });
 
 sequelize
@@ -24,6 +45,12 @@ sequelize
   })
   .then(() => {
     Restaraunt.sync();
+  })
+  .then(() => {
+    Hotel.sync();
+  })
+  .then(() => {
+    Attraction.sync();
   })
   .catch(err => {
     console.error('Unable to connect to the database:', err);
