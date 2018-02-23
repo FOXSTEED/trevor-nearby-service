@@ -2,10 +2,9 @@ const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('postgres://localhost:5432/testdb');
 
-
-
 const Restaraunt = sequelize.define('restaurant', {
   restaurants_id: Sequelize.INTEGER,
+  name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
   longitude: Sequelize.DOUBLE,
   address: Sequelize.STRING,
@@ -18,6 +17,7 @@ const Restaraunt = sequelize.define('restaurant', {
 
 const Hotel = sequelize.define('hotel', {
   hotel_id: Sequelize.INTEGER,
+  name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
   longitude: Sequelize.DOUBLE,
   address: Sequelize.STRING,
@@ -29,6 +29,7 @@ const Hotel = sequelize.define('hotel', {
 
 const Attraction = sequelize.define('attraction', {
   attraction_id: Sequelize.INTEGER,
+  name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
   longitude: Sequelize.DOUBLE,
   address: Sequelize.STRING,
