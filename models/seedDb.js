@@ -1,12 +1,9 @@
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgres://localhost:5432/testdb');
-
 const faker = require('faker');
 const randomPuppy = require('random-puppy');
 const randomCoordinates = require('./randomCoordinates');
-const {Restaurant, Hotel, Attraction} = require('./models.js');
+const { Restaurant, Hotel, Attraction } = require('./models.js');
 
-for(let i = 0; i < 200; i++) {
+for (let i = 0; i < 200; i++) {
 
   randomPuppy()
   .then(url => {
