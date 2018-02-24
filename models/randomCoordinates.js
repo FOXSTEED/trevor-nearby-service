@@ -44,5 +44,4 @@ let getRandomCoordinates = (city = randomCity()) => {
   return { latitude, longitude };
 };
 
-exports.randomCity = randomCity;
-exports.getRandomCoordinates = getRandomCoordinates;
+module.exports = { randomCity, getRandomCoordinates };
