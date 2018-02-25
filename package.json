@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "serve": "nodemon server/server.js"
+    "serve": "nodemon server/server.js",
+    "test": "jest"
   },
   "dependencies": {
     "babel-core": "^6.26.0",
