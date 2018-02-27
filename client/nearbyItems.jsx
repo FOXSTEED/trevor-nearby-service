@@ -4,7 +4,8 @@ import NearbyItem from './nearbyItem';
 
 const NearbyItems = props => (
   <div className="nearby-items">
-    <h2>Nearby {props.type}s</h2>
+    <div className="section-title">Nearby {props.type}s</div>
+    <NearbyItem type={props.type} />
     <NearbyItem type={props.type} />
   </div>
 );
