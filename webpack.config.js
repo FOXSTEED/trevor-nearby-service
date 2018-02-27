@@ -17,7 +17,8 @@ let config = {
         loader: 'babel-loader'
       }
     ]
-  }
+  },
+  resolve: { extensions: ['.js', '.jsx'] }
 };
 
 module.exports = config;
