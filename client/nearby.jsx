@@ -11,7 +11,7 @@ class Nearby extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="nearby">
         <div>Map</div>
         <NearbyItems type="Hotel" />
         <NearbyItems type="Restaurant" />

@@ -2,7 +2,7 @@
 import React from 'react';
 
 const NearbyItem = props => (
-  <div>
+  <div className="nearby-item">
     Nearby {props.type}
   </div>
 );
