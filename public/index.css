@@ -1,7 +1,8 @@
 /* Need to modularize at some point */
 /* Nearby component */
 .nearby {
-  font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif
+  font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif;
+  color: #2c2c2c;
 }
 
 /* NearbyItems component */
@@ -41,8 +42,20 @@
 }
 
 .nearby-item .item-reviews {
-  display: block;
+  display: flex;
+  vertical-align: middle;
   font-size: 12px;
+  margin-top: 4px;
+}
+
+.nearby-item .review-bubbles {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.nearby-item .item-reviews .review-count {
+  margin-left: 5px;
+  margin-top: 4px;
 }
 
 .nearby-item .item-distance {
