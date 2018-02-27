@@ -12,7 +12,14 @@ class Nearby extends React.Component {
   render() {
     return (
       <div className="nearby">
-        <div>Map</div>
+        <div className="block-header">
+          <div className="block-title">
+            Nearby
+          </div>
+        </div>
+        <div className="map-block">
+          <div className="nearby-map" />
+        </div>
         <NearbyItems type="Hotel" />
         <NearbyItems type="Restaurant" />
         <NearbyItems type="Attraction" />
