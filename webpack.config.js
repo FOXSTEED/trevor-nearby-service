@@ -1,24 +1,24 @@
-var webpack = require('webpack');
-var path = require('path');
+let path = require('path');
 
-var BUILD_DIR = path.resolve(__dirname, 'public/build');
-var APP_DIR = path.resolve(__dirname, 'client');
+let BUILD_DIR = path.resolve(__dirname, 'public/build');
+let APP_DIR = path.resolve(__dirname, 'client');
 
-var config = {
-  entry: APP_DIR + '/app.jsx',
+let config = {
+  entry: `${APP_DIR}/nearby.jsx`,
   output: {
     path: BUILD_DIR,
-    filename: 'app.js'
+    filename: 'nearby.js'
   },
-  module : {
-    loaders : [
+  module: {
+    loaders: [
       {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel-loader'
+        test: /\.jsx?/,
+        include: APP_DIR,
+        loader: 'babel-loader'
       }
     ]
-  }
+  },
+  resolve: { extensions: ['.js', '.jsx'] }
 };
 
 module.exports = config;

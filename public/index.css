@@ -1,0 +1,52 @@
+/* Need to modularize at some point */
+/* Nearby component */
+.nearby {
+  font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif
+}
+
+/* NearbyItems component */
+.nearby-items {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.nearby-items .section-title {
+  font-size: 20px;
+}
+
+/* NearbyItem component */
+.nearby-item {
+  color: #4a4a4a;
+  display: flex;
+  vertical-align: top;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.nearby-item .item-image {
+  background-color: #4a4a4a;
+  width: 80px;
+  height: 80px;
+  display: inline-block;
+}
+
+.nearby-item .item-column {
+  display: inline-block;
+  margin-top: 4px;
+  padding-left: 16px;
+}
+
+.nearby-item .item-name {
+  display: block;
+}
+
+.nearby-item .item-reviews {
+  display: block;
+  font-size: 12px;
+}
+
+.nearby-item .item-distance {
+  display: block;
+  font-size: 12px;
+  padding-top: 6px;
+}
