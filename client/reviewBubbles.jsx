@@ -7,6 +7,8 @@ import ReviewEmptyBubble from './reviewEmptyBubble';
 const ReviewBubbles = () => (
   <div className="review-bubbles">
     <ReviewBubble />
+    <ReviewBubble />
+    <ReviewBubble />
     <ReviewHalfBubble />
     <ReviewEmptyBubble />
   </div>
