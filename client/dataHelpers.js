@@ -1,21 +1,28 @@
 import axios from 'axios';
 
-const getAttraction = async id => axios.get(`/attractions/${id}`);
+const getItem = (type, id) => (
+  new Promise((resolve) => {
+    axios.get(`/${type}/${id}`)
+      .then((item) => {
+        resolve(item.data);
+      });
+  })
+);
 
 const getFourIds = id => (
   [(id + 1) % 200, (id + 2) % 200, (id + 3) % 200, (id + 4) % 200]
 );
 
-const getNearest = async (type, id) => {
+const getNearest = (type, id) => {
   let nearest = [];
   let nearestIds = getFourIds(id);
 
-  nearestIds.forEach(async (nearestId) => {
-    nearest.push((await axios.get(`/${type}/${nearestId}`)).data);
+  nearestIds.forEach((nearestId) => {
+    nearest.push(getItem(type, nearestId));
   });
 
-  return nearestIds;
+  return Promise.all(nearest);
 };
 
 
-export default { getAttraction, getNearest };
+export default { getItem, getNearest };
