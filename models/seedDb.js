@@ -14,7 +14,7 @@ for (let i = 0; i < 200; i += 1) {
         latitude: coords.latitude,
         longitude: coords.longitude,
         address: faker.address.streetAddress(true),
-        rating: faker.random.number({ min: 0, max: 5 }),
+        rating: faker.random.number({ min: 0, max: 10 }),
         ranking: faker.random.number({ min: 0, max: 5 }),
         tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
         image_url: url
@@ -36,7 +36,7 @@ for (let i = 0; i < 200; i += 1) {
         latitude: coords.latitude,
         longitude: coords.longitude,
         address: faker.address.streetAddress(true),
-        rating: faker.random.number({ min: 0, max: 5 }),
+        rating: faker.random.number({ min: 0, max: 10 }),
         ranking: faker.random.number({ min: 0, max: 5 }),
         tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
         image_url: url
@@ -58,7 +58,7 @@ for (let i = 0; i < 200; i += 1) {
         latitude: coords.latitude,
         longitude: coords.longitude,
         address: faker.address.streetAddress(true),
-        rating: faker.random.number({ min: 0, max: 5 }),
+        rating: faker.random.number({ min: 0, max: 10 }),
         no_reviews: faker.random.number({ min: 0, max: 10 }),
         ranking: faker.random.number({ min: 0, max: 5 }),
         tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
