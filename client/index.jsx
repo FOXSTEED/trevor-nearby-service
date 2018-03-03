@@ -3,9 +3,9 @@ import { render } from 'react-dom';
 import Nearby from './nearby';
 import dh from './dataHelpers';
 
-let getData = () => {
-  let id = 12;
+const url = require('url');
 
+let getData = async (id) => {
   let attraction = dh.getItem('attractions', id);
   let hotels = dh.getNearest('hotels', id);
   let restaurants = dh.getNearest('restaurants', id);
@@ -14,7 +14,15 @@ let getData = () => {
   return Promise.all([id, attraction, hotels, restaurants, attractions]);
 };
 
-getData()
+let id =
+  parseInt(
+    url.parse(window.location.href)
+      .path
+      .replace('/', '')
+    , 10
+  );
+
+getData(id)
   .then((data) => {
     render(<Nearby
       id={data[0]}
