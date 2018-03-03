@@ -2,11 +2,11 @@
 import React from 'react';
 import ReviewBubbles from './reviewBubbles';
 
-const NearbyItem = () => (
+const NearbyItem = props => (
   <div className="nearby-item">
     <img className="item-image" alt="" />
     <div className="item-column">
-      <div className="item-name">Lorem ipsum</div>
+      <div className="item-name">{props.item.name}</div>
       <div className="item-reviews">
         <ReviewBubbles />
         <div className="review-count">42 reviews</div>
