@@ -18,7 +18,8 @@ const renderMiles = (miles) => {
 
 const NearbyItem = props => (
   <div className="nearby-item">
-    <img className="item-image" alt="" />
+    {console.log(props.item)}
+    <img className="item-image" alt="" src={props.item.image_url} />
     <div className="item-column">
       <div className="item-name">{props.item.name}</div>
       <div className="item-reviews">
