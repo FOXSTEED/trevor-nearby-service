@@ -22,6 +22,7 @@ const Hotel = sequelize.define('hotel', {
   longitude: Sequelize.DOUBLE,
   address: Sequelize.STRING,
   rating: Sequelize.INTEGER,
+  no_reviews: Sequelize.INTEGER,
   ranking: Sequelize.INTEGER,
   tags: Sequelize.STRING, // stringified array
   image_url: Sequelize.STRING
@@ -34,6 +35,7 @@ const Attraction = sequelize.define('attraction', {
   longitude: Sequelize.DOUBLE,
   address: Sequelize.STRING,
   rating: Sequelize.INTEGER,
+  no_reviews: Sequelize.INTEGER,
   ranking: Sequelize.INTEGER,
   tags: Sequelize.STRING, // stringified array
   image_url: Sequelize.STRING
