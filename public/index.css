@@ -44,10 +44,23 @@
 /* NearbyItem component */
 .nearby-item {
   color: #4a4a4a;
-  display: flex;
   vertical-align: top;
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .nearby-item {
+    display: flex;
+    width: 645px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nearby-item {
+    display: inline-flex;
+    width: 406px;
+  }
 }
 
 .nearby-item .item-image {
