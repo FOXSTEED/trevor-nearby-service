@@ -4,7 +4,7 @@ const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 
 const app = express();
 
-app.use('/:id', express.static('public/'));
+app.use('/listings/:id/nearby', express.static('public/'));
 
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findOne({ where: { restaurant_id: req.params.id } })
