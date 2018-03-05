@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import NearbyItems from './nearbyItems';
+import NearbyItems from './nearbyItems/nearbyItems';
 
 const { getData } = require('./dataHelpers');
 const distance = require('gps-distance');

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import ReviewBubbles from './reviewBubbles';
+import ReviewBubbles from './reviewBubbles/reviewBubbles';
 
 const renderReviews = (numReviews) => {
   if (numReviews === 1) {
