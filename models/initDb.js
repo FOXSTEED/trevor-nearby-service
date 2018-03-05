@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const { Restaurant, Hotel, Attraction } = require('./models.js');
 
-const sequelize = new Sequelize('postgres://localhost:5432/testdb');
+const sequelize = new Sequelize('postgres://localhost:5432/nearbyItems');
 
 sequelize
   .authenticate()

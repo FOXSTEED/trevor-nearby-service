@@ -4,7 +4,7 @@ const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 
 const app = express();
 
-app.use(express.static('public/'));
+app.use('/listings/:id/nearby', express.static('public/'));
 
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findOne({ where: { restaurant_id: req.params.id } })
@@ -42,6 +42,6 @@ app.get('/attractions/:id', (req, res) => {
     });
 });
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000');
+app.listen(3003, () => {
+  console.log('App listening on port 3003');
 });

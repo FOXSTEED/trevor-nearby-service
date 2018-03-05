@@ -3,10 +3,36 @@
 .nearby {
   font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif;
   color: #2c2c2c;
+  width: 814px;
+}
+
+/* Nearby header/title */
+.nearby .block-header {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.nearby .block-header .block-title {
+  color: #000a12;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Nearby map placeholder */
+.nearby .map-block {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 32px;
+  padding-bottom: 12px;
+}
+.nearby-map {
+  height: 224px;
+  width: 650px;
+  background-color: #dddddd;
 }
 
 /* NearbyItems component */
 .nearby-items {
+  border-top: 1px solid #e5e5e5;
   padding-top: 24px;
   padding-bottom: 24px;
 }
@@ -26,8 +52,8 @@
 
 .nearby-item .item-image {
   background-color: #4a4a4a;
-  width: 80px;
-  height: 80px;
+  width: 94px;
+  height: 94px;
   display: inline-block;
 }
 

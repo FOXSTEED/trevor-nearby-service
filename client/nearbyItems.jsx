@@ -1,12 +1,18 @@
-/* eslint-disable react/prop-types */
+/* eslint-disable react/prop-types, function-paren-newline */
 import React from 'react';
 import NearbyItem from './nearbyItem';
 
-const NearbyItems = props => (
+const NearbyItems = ({ type, items, getDistance }) => (
   <div className="nearby-items">
-    <div className="section-title">Nearby {props.type}s</div>
-    <NearbyItem type={props.type} />
-    <NearbyItem type={props.type} />
+    <div className="section-title">Nearby {type}s</div>
+    {items.map(item => (
+      <NearbyItem
+        key={JSON.stringify(item)}
+        type={type}
+        item={item}
+        getDistance={getDistance}
+      />
+    ))}
   </div>
 );
 

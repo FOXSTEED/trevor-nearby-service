@@ -4,7 +4,7 @@ let BUILD_DIR = path.resolve(__dirname, 'public/build');
 let APP_DIR = path.resolve(__dirname, 'client');
 
 let config = {
-  entry: `${APP_DIR}/nearby.jsx`,
+  entry: `${APP_DIR}/index.jsx`,
   output: {
     path: BUILD_DIR,
     filename: 'nearby.js'
