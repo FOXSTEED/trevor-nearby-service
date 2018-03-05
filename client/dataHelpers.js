@@ -25,4 +25,4 @@ const getNearest = (type, id) => {
 };
 
 
-export default { getItem, getNearest };
+module.exports = { getItem, getNearest };
