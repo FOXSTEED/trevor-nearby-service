@@ -18,7 +18,7 @@ let id =
   parseInt(
     url.parse(window.location.href)
       .path
-      .replace('/', '')
+      .split('/')[2]
     , 10
   );
 
