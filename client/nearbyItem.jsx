@@ -18,7 +18,6 @@ const renderMiles = (miles) => {
 
 const NearbyItem = ({ item, getDistance }) => (
   <div className="nearby-item">
-    {console.log(item)}
     <img className="item-image" alt="" src={item.image_url} />
     <div className="item-column">
       <div className="item-name">{item.name}</div>
