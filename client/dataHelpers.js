@@ -24,5 +24,14 @@ const getNearest = (type, id) => {
   return Promise.all(nearest);
 };
 
+const getData = async (id) => {
+  let attraction = getItem('attractions', id);
+  let hotels = getNearest('hotels', id);
+  let restaurants = getNearest('restaurants', id);
+  let attractions = getNearest('attractions', id);
 
-module.exports = { getItem, getNearest };
+  return Promise.all([attraction, hotels, restaurants, attractions]);
+};
+
+
+module.exports = { getItem, getNearest, getData };

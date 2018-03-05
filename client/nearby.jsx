@@ -2,18 +2,9 @@
 import React from 'react';
 import NearbyItems from './nearbyItems';
 
-const { getItem, getNearest } = require('./dataHelpers');
+const { getData } = require('./dataHelpers');
 const distance = require('gps-distance');
 const kmToMi = require('km-to-mi');
-
-const getData = async (id) => {
-  let attraction = getItem('attractions', id);
-  let hotels = getNearest('hotels', id);
-  let restaurants = getNearest('restaurants', id);
-  let attractions = getNearest('attractions', id);
-
-  return Promise.all([attraction, hotels, restaurants, attractions]);
-};
 
 class Nearby extends React.Component {
   constructor(props) {
