@@ -2,6 +2,7 @@
 import React from 'react';
 import NearbyItems from './nearbyItems';
 
+const { getData } = require('./dataHelpers');
 const distance = require('gps-distance');
 const kmToMi = require('km-to-mi');
 
@@ -9,12 +10,28 @@ class Nearby extends React.Component {
   constructor(props) {
     super(props);
     this.getDistance = this.getDistance.bind(this);
+    this.state = {
+      attraction: {},
+      hotels: [],
+      restaurants: [],
+      attractions: []
+    };
+
+    getData(props.id)
+      .then(((data) => {
+        this.setState({
+          attraction: data[0],
+          hotels: data[1],
+          restaurants: data[2],
+          attractions: data[3]
+        });
+      }));
   }
 
   getDistance(latitude, longitude) {
     let km = distance(
-      this.props.attraction.latitude,
-      this.props.attraction.longitude,
+      this.state.attraction.latitude,
+      this.state.attraction.longitude,
       latitude,
       longitude
     );
@@ -34,17 +51,17 @@ class Nearby extends React.Component {
         </div>
         <NearbyItems
           type="Hotel"
-          items={this.props.hotels}
+          items={this.state.hotels}
           getDistance={this.getDistance}
         />
         <NearbyItems
           type="Restaurant"
-          items={this.props.restaurants}
+          items={this.state.restaurants}
           getDistance={this.getDistance}
         />
         <NearbyItems
           type="Attraction"
-          items={this.props.attractions}
+          items={this.state.attractions}
           getDistance={this.getDistance}
         />
       </div>
