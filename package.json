@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "serve": "nodemon server/server.js",
+    "serve": "PORT=3003 nodemon server/server.js",
     "test": "jest",
     "initDb": "node models/initDb.js",
     "seedDb": "node models/seedDb.js"

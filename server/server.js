@@ -1,8 +1,8 @@
 const express = require('express');
-
 const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 
 const app = express();
+const PORT = process.env.PORT || 3003;
 
 app.use('/listings/:id/nearby', express.static('public/'));
 
@@ -42,6 +42,6 @@ app.get('/attractions/:id', (req, res) => {
     });
 });
 
-app.listen(3003, () => {
-  console.log('App listening on port 3003');
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
 });
