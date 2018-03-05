@@ -10,9 +10,9 @@ const newKey = () => {
   return lastKey;
 };
 
-const ReviewBubbles = (props) => {
-  let fullBubbleCount = Math.floor(props.rating / 2);
-  let halfBubbleCount = props.rating % 2;
+const ReviewBubbles = ({ rating }) => {
+  let fullBubbleCount = Math.floor(rating / 2);
+  let halfBubbleCount = rating % 2;
   let emptyBubbleCount = 5 - (fullBubbleCount + halfBubbleCount);
 
   return (

@@ -16,18 +16,18 @@ const renderMiles = (miles) => {
   return `${miles} miles away`;
 };
 
-const NearbyItem = props => (
+const NearbyItem = ({ item, getDistance }) => (
   <div className="nearby-item">
-    {console.log(props.item)}
-    <img className="item-image" alt="" src={props.item.image_url} />
+    {console.log(item)}
+    <img className="item-image" alt="" src={item.image_url} />
     <div className="item-column">
-      <div className="item-name">{props.item.name}</div>
+      <div className="item-name">{item.name}</div>
       <div className="item-reviews">
-        <ReviewBubbles rating={props.item.rating} />
-        <div className="review-count">{renderReviews(props.item.num_reviews)}</div>
+        <ReviewBubbles rating={item.rating} />
+        <div className="review-count">{renderReviews(item.num_reviews)}</div>
       </div>
       <div className="item-distance">
-        {renderMiles(props.getDistance(props.item.latitude, props.item.longitude))}
+        {renderMiles(getDistance(item.latitude, item.longitude))}
       </div>
     </div>
 

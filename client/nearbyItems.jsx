@@ -2,15 +2,15 @@
 import React from 'react';
 import NearbyItem from './nearbyItem';
 
-const NearbyItems = props => (
+const NearbyItems = ({ type, items, getDistance }) => (
   <div className="nearby-items">
-    <div className="section-title">Nearby {props.type}s</div>
-    {props.items.map(item => (
+    <div className="section-title">Nearby {type}s</div>
+    {items.map(item => (
       <NearbyItem
         key={JSON.stringify(item)}
-        type={props.type}
+        type={type}
         item={item}
-        getDistance={props.getDistance}
+        getDistance={getDistance}
       />
     ))}
   </div>
