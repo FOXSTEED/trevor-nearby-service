@@ -1,8 +1,11 @@
 const express = require('express');
 const { Restaurant, Hotel, Attraction } = require('../models/models.js');
+const cors = require('cors');
 
 const app = express();
 const PORT = process.env.PORT || 3003;
+
+app.use(cors());
 
 app.use('/bundle.js', express.static('public/build/bundle.js'));
 
