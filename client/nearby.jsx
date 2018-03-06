@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import NearbyItems from './nearbyItems/nearbyItems';
+import NearbyMap from './nearbyMap/nearbyMap';
 
 const { getData } = require('./dataHelpers');
 const distance = require('gps-distance');
@@ -14,7 +15,8 @@ class Nearby extends React.Component {
       attraction: {},
       hotels: [],
       restaurants: [],
-      attractions: []
+      attractions: [],
+      dataLoaded: false
     };
 
     getData(props.id)
@@ -23,7 +25,8 @@ class Nearby extends React.Component {
           attraction: data[0],
           hotels: data[1],
           restaurants: data[2],
-          attractions: data[3]
+          attractions: data[3],
+          dataLoaded: true
         });
       }));
   }
@@ -47,7 +50,8 @@ class Nearby extends React.Component {
           </div>
         </div>
         <div className="map-block">
-          <div className="nearby-map" />
+          {this.state.dataLoaded &&
+            <NearbyMap attraction={this.state.attraction} />}
         </div>
         <NearbyItems
           type="Hotel"
