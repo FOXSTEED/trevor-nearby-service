@@ -1,0 +1,60 @@
+.nearbyItem {
+  color: #4a4a4a;
+  vertical-align: top;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .nearbyItem {
+    display: flex;
+    width: 645px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nearbyItem {
+    display: inline-flex;
+    width: 406px;
+  }
+}
+
+.nearbyItem .itemImage {
+  background-color: #4a4a4a;
+  width: 94px;
+  height: 94px;
+  display: inline-block;
+}
+
+.nearbyItem .itemColumn {
+  display: inline-block;
+  margin-top: 4px;
+  padding-left: 16px;
+}
+
+.nearbyItem .itemName {
+  display: block;
+}
+
+.nearbyItem .itemReviews {
+  display: flex;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.nearbyItem .reviewBubbles {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.nearbyItem .itemReviews .reviewCount {
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
+.nearbyItem .itemDistance {
+  display: block;
+  font-size: 12px;
+  padding-top: 6px;
+}

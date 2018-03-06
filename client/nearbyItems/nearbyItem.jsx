@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import ReviewBubbles from './reviewBubbles/reviewBubbles';
+import style from './nearbyItem.css';
 
 const renderReviews = (numReviews) => {
   if (numReviews === 1) {
@@ -17,15 +18,15 @@ const renderMiles = (miles) => {
 };
 
 const NearbyItem = ({ item, getDistance }) => (
-  <div className="nearby-item">
-    <img className="item-image" alt="" src={item.image_url} />
-    <div className="item-column">
-      <div className="item-name">{item.name}</div>
-      <div className="item-reviews">
+  <div className={style.nearbyItem}>
+    <img className={style.itemImage} alt="" src={item.image_url} />
+    <div className={style.itemColumn}>
+      <div className={style.itemName}>{item.name}</div>
+      <div className={style.itemReviews}>
         <ReviewBubbles rating={item.rating} />
-        <div className="review-count">{renderReviews(item.num_reviews)}</div>
+        <div className={style.reviewCount}>{renderReviews(item.num_reviews)}</div>
       </div>
-      <div className="item-distance">
+      <div className={style.itemDistance}>
         {renderMiles(getDistance(item.latitude, item.longitude))}
       </div>
     </div>

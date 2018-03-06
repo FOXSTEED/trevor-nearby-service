@@ -1,0 +1,9 @@
+.nearbyItems {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.nearbyItems .sectionTitle {
+  font-size: 20px;
+}
