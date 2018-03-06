@@ -34,7 +34,6 @@
     "jest": "^22.4.2",
     "km-to-mi": "^1.0.0",
     "pg": "^7.4.1",
-    "random-puppy": "^1.1.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
