@@ -4,6 +4,8 @@ const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 const app = express();
 const PORT = process.env.PORT || 3003;
 
+app.use('/', express.static('public/'));
+
 app.use('/listings/:id/nearby', express.static('public/'));
 
 app.get('/restaurants/:id', (req, res) => {
