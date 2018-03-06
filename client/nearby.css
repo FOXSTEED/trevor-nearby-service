@@ -1,0 +1,23 @@
+/* Nearby component */
+.nearby {
+  font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif;
+  color: #2c2c2c;
+  width: 814px;
+}
+
+/* Nearby header/title */
+.nearby .blockHeader {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.nearby .blockHeader .blockTitle {
+  color: #000a12;
+  font-size: 28px;
+  font-weight: 700;
+}
+.nearby .mapBlock {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 32px;
+  padding-bottom: 12px;
+}

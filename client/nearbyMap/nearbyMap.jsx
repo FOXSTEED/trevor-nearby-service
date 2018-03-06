@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types, no-unused-vars, no-undef */
 import React from 'react';
 import loadJS from './loadJS';
+import style from './nearbyMap.css';
 import GOOGLE_MAPS_API_KEY from './googlemaps.config';
 
 class NearbyMap extends React.Component {
@@ -25,8 +26,8 @@ class NearbyMap extends React.Component {
 
   render() {
     return (
-      <div className="nearby-map">
-        <div id="map" />
+      <div className={style.nearbyMap}>
+        <div id="map" className={style.map} />
       </div>
     );
   }

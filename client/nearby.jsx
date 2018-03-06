@@ -2,6 +2,7 @@
 import React from 'react';
 import NearbyItems from './nearbyItems/nearbyItems';
 import NearbyMap from './nearbyMap/nearbyMap';
+import style from './nearby.css';
 
 const { getData } = require('./dataHelpers');
 const distance = require('gps-distance');
@@ -43,13 +44,13 @@ class Nearby extends React.Component {
 
   render() {
     return (
-      <div className="nearby">
-        <div className="block-header">
-          <div className="block-title">
+      <div className={`nearby ${style.nearby}`}>
+        <div className={style.blockHeader}>
+          <div className={style.blockTitle}>
             Nearby
           </div>
         </div>
-        <div className="map-block">
+        <div className={style.mapBlock}>
           {this.state.dataLoaded &&
             <NearbyMap attraction={this.state.attraction} />}
         </div>
