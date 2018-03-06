@@ -75,3 +75,5 @@ class Nearby extends React.Component {
 }
 
 export default Nearby;
+
+window.Nearby = Nearby;
