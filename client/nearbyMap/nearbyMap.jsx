@@ -15,7 +15,7 @@ class NearbyMap extends React.Component {
   initializeMap() {
     let attraction = { lat: this.props.attraction.latitude, lng: this.props.attraction.longitude };
     let map = new google.maps.Map(window.document.getElementById('map'), {
-      zoom: 4,
+      zoom: 14,
       center: attraction
     });
     let marker = new google.maps.Marker({
