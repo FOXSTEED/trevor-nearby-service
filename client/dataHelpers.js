@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const getItem = (type, id) => (
   new Promise((resolve) => {
-    axios.get(`/${type}/${id}`)
+    axios.get(`http://localhost:3003/${type}/${id}`) // refactor later
       .then((item) => {
         resolve(item.data);
       });
