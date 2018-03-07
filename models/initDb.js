@@ -7,7 +7,7 @@ let promises = [];
 sequelize
   .authenticate()
   .then(() => {
-    console.log('Connection has been established successfully.\n Initializing database...');
+    console.log('Connection has been established successfully.\n\nInitializing database...');
 
     promises.push(Restaurant.sync());
     promises.push(Hotel.sync());
