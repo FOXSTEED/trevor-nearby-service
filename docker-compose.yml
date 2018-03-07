@@ -1,0 +1,18 @@
+version: '2'
+services:
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: nearbyapp
+      POSTGRES_DB: nearbyitems
+  web:
+    build: .
+    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; npm start'
+    volumes:
+      - .:/nearby_service/
+    ports:
+      - "3003:3003"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://nearbyapp@postgres/nearbyitems
