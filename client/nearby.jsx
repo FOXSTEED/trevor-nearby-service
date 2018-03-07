@@ -39,7 +39,7 @@ class Nearby extends React.Component {
       latitude,
       longitude
     );
-    return Math.floor(kmToMi(km));
+    return Math.floor(kmToMi(km) * 100) / 100;
   }
 
   render() {
