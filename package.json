@@ -9,11 +9,12 @@
   },
   "scripts": {
     "dev": "webpack -d --watch",
-    "build": "webpack -p",
+    "build": "webpack -d",
     "serve": "PORT=3003 nodemon server/server.js",
     "test": "jest",
     "initDb": "node models/initDb.js",
-    "seedDb": "node models/seedDb.js"
+    "seedDb": "node models/seedDb.js",
+    "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve"
   },
   "dependencies": {
     "axios": "^0.18.0",

@@ -1,9 +1,12 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('postgres://localhost:5432/nearbyItems');
+const sequelize = new Sequelize('postgres://localhost:5432/nearbyitems', { logging: false });
 
 const Restaurant = sequelize.define('restaurant', {
-  restaurant_id: Sequelize.INTEGER,
+  restaurant_id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
   longitude: Sequelize.DOUBLE,
@@ -16,7 +19,10 @@ const Restaurant = sequelize.define('restaurant', {
 });
 
 const Hotel = sequelize.define('hotel', {
-  hotel_id: Sequelize.INTEGER,
+  hotel_id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
   longitude: Sequelize.DOUBLE,
@@ -29,7 +35,10 @@ const Hotel = sequelize.define('hotel', {
 });
 
 const Attraction = sequelize.define('attraction', {
-  attraction_id: Sequelize.INTEGER,
+  attraction_id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true
+  },
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
   longitude: Sequelize.DOUBLE,
@@ -42,4 +51,6 @@ const Attraction = sequelize.define('attraction', {
 });
 
 
-module.exports = { Restaurant, Hotel, Attraction };
+module.exports = {
+  sequelize, Restaurant, Hotel, Attraction
+};
