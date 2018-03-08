@@ -14,6 +14,11 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
+       - image: circleci/postgres:9.6.2-alpine
+        environment:
+        - POSTGRES_USER: nearbyapp
+        - POSTGRES_DB: nearbyitems
+
     working_directory: ~/project
 
     steps:
@@ -32,6 +37,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+
+      - run: npm run initDb 
+      - run: npm run seedDb
+      
       # run tests!
       - run: npm test
