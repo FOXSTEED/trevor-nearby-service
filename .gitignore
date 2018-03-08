@@ -24,5 +24,4 @@ coverage
 build/
 dist/
 
-googlemaps.config.js
-
+.env

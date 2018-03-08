@@ -5,6 +5,9 @@ const getItem = (type, id) => (
     axios.get(`http://localhost:3003/${type}/${id}`) // refactor later
       .then((item) => {
         resolve(item.data);
+      })
+      .catch((err) => {
+        console.log('Error in dataHelpers getItem: ', err);
       });
   })
 );

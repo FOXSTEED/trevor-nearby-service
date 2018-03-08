@@ -11,10 +11,12 @@
     "dev": "webpack -d --watch",
     "build": "webpack -d",
     "serve": "PORT=3003 node server/server.js",
+    "serve-dev": "PORT=3003 nodemon server/server.js",
     "test": "jest",
     "initDb": "node models/initDb.js",
     "seedDb": "node models/seedDb.js",
-    "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve"
+    "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve",
+    "start-dev": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve-dev"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -48,6 +50,14 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jsdom": "^11.6.2"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }
