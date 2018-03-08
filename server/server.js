@@ -9,7 +9,7 @@ app.use(cors());
 
 app.use('/bundle.js', express.static('public/build/bundle.js'));
 
-app.use('/listings/:id/nearby', express.static('public/'));
+app.use('/:id', express.static('public/'));
 
 app.get('/restaurants/:id', (req, res) => {
   Restaurant.findOne({ where: { restaurant_id: req.params.id } })
