@@ -1,4 +1,5 @@
 let path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 let BUILD_DIR = path.resolve(__dirname, 'public/build');
 let APP_DIR = path.resolve(__dirname, 'client');
@@ -28,6 +29,12 @@ let config = {
         }
       }
     ],
+  },
+  plugins: [
+    new Dotenv()
+  ],
+  node: {
+    fs: 'empty'
   },
   resolve: { extensions: ['.js', '.jsx'] }
 };
