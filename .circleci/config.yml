@@ -43,7 +43,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       - run: npm start
-        background: true
+          background: true
 
       - run: dockerize -wait tcp://localhost:3003 -timeout 1m
 
