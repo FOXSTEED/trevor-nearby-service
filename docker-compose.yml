@@ -5,8 +5,10 @@ services:
     environment:
       POSTGRES_USER: nearbyapp
       POSTGRES_DB: nearbyitems
-  web:
-    build: .
+  nearby-component:
+    env_file:
+      - .env
+    image: kguinto/nearby-component
     command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; npm start'
     volumes:
       - .:/nearby_service/
@@ -16,3 +18,4 @@ services:
       - postgres
     environment:
       DATABASE_URL: postgres://nearbyapp@postgres/nearbyitems
+      GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY}"

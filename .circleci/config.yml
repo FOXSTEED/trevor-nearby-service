@@ -8,13 +8,14 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
+        environment:
+        - DATABASE_URL: postgres://nearbyapp@localhost:5432/nearbyitems
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
-
-       - image: circleci/postgres:9.6.2-alpine
+      - image: circleci/postgres:9.6.2-alpine
         environment:
         - POSTGRES_USER: nearbyapp
         - POSTGRES_DB: nearbyitems
@@ -32,14 +33,20 @@ jobs:
           - v1-dependencies-
 
       - run: npm i
+      
+      # Wait for Postgres connection to open.
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run initDb 
-      - run: npm run seedDb
-      
-      # run tests!
-      - run: npm test
+      - run:
+          command: npm run start
+          background: true
+
+      - run: dockerize -wait tcp://localhost:3003 -timeout 1m
+
+      # run tests! 
+      - run: npm run test

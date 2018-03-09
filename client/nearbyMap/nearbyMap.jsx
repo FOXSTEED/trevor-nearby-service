@@ -3,8 +3,6 @@ import React from 'react';
 import loadJS from './loadJS';
 import style from './nearbyMap.css';
 
-require('dotenv').config({ encoding: 'base64' });
-// import GOOGLE_MAPS_API_KEY from './googlemaps.config';
 let { GOOGLE_MAPS_API_KEY } = process.env;
 
 class NearbyMap extends React.Component {
