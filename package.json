@@ -12,7 +12,7 @@
     "build": "webpack -d",
     "serve": "PORT=3003 node server/server.js",
     "serve-dev": "PORT=3003 nodemon server/server.js",
-    "test": "jest",
+    "test": "jest --forceExit",
     "initDb": "node models/initDb.js",
     "seedDb": "node models/seedDb.js",
     "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve",
