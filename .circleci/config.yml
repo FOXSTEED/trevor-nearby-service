@@ -42,8 +42,11 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run initDb 
-      - run: npm run seedDb
-      - run: npm run build
+      - run: npm start
+        background: true
+
+      - run: dockerize -wait tcp://localhost:3003 -timeout 1m
+
       # run tests!
-      - run: npm run serve | npm test
+
+      - run: npm test
