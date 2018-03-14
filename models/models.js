@@ -6,7 +6,8 @@ const sequelize = new Sequelize(DATABASE_URL, { logging: false });
 const Restaurant = sequelize.define('restaurant', {
   restaurant_id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
@@ -22,7 +23,8 @@ const Restaurant = sequelize.define('restaurant', {
 const Hotel = sequelize.define('hotel', {
   hotel_id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
@@ -38,7 +40,8 @@ const Hotel = sequelize.define('hotel', {
 const Attraction = sequelize.define('attraction', {
   attraction_id: {
     type: Sequelize.INTEGER,
-    primaryKey: true
+    primaryKey: true,
+    autoIncrement: true
   },
   name: Sequelize.STRING,
   latitude: Sequelize.DOUBLE,
