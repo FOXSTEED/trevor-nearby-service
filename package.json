@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "build": "webpack -d",
-    "seedBulk": "node models/seedBulkData.js",
+    "seedBulk": " node --max_old_space_size=7168 models/seedBulkData.js",
     "serve": "PORT=3003 node server/server.js",
     "serve-dev": "PORT=3003 nodemon server/server.js",
     "test": "jest --forceExit",
@@ -38,6 +38,7 @@
     "express": "^4.16.2",
     "faker": "^4.1.0",
     "gps-distance": "0.0.4",
+    "increase-memory-limit": "^1.0.6",
     "jest": "^22.4.2",
     "km-to-mi": "^1.0.0",
     "pg": "^7.4.1",

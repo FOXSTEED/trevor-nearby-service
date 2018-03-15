@@ -1,3 +1,5 @@
+
+
 const faker = require('faker');
 const randomCoordinates = require('./randomCoordinates');
 const randomImages = require('./randomImages');
@@ -96,32 +98,90 @@ let promiseAllBulkCreate = () => {
   });
 }
 
-let createTwoMillionRecords = (model, type) => {
-  createFiveHundredThousandRecords(model, type)
-    .then(() => {
-      console.log('Inserted 500k');
-      createFiveHundredThousandRecords(model, type)
-        .then(() => {
-          console.log('Inserted 500k');
-          createFiveHundredThousandRecords(model, type)
-            .then(() => {
-              console.log('Inserted 500k');
-              createFiveHundredThousandRecords(model, type)
-                .then(() => {
-                  console.log('Inserted 500k');
-                  sequelize.close();
-                  process.exit();
-              }).catch(error => console.log(error));
-            }).catch(error => console.log(error));
-          }).catch(error => console.log(error));
-      }).catch(error => console.log(error));
+async function createTwoMillionRecords(model, type) {
+  
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+  await createFiveHundredThousandRecords(Hotel, 'hotel');
+
+  
+
+ sequelize.close();
+ console.log("inserted some thousand of records")
+ process.exit();
+
+ 
+ 
+
 };
 
-createTwoMillionRecords(Hotel, 'hotel');
-createTwoMillionRecords(Hotel, 'hotel');
-createTwoMillionRecords(Hotel, 'hotel');
-createTwoMillionRecords(Hotel, 'hotel');
+async function createTenMillion(model, type) {
+  const firstMil = createTwoMillionRecords(model, type);
+  const secondMil = createTwoMillionRecords(model, type);
+  const thirdMil = createTwoMillionRecords(model, type);
+  const fourthMil = createTwoMillionRecords(model, type);
+  const fifthMil = createTwoMillionRecords(model, type);
 
+  await firstMil;
+  await secondMil;
+  await thirdMil;
+  await fourthMil;
+  await fifthMil;
+  sequelize.close();
+  return 'Done Millions';
+}
+
+// createTenMillion(Hotel, 'hotel');
+const insertQuarterMillionRecords = createTwoMillionRecords(Hotel, 'hotel');
+async function test() {
+  await insertQuarterMillionRecords;
+}
+test();
+const parrallelInsertion = async () => {
+  await Promise.all([
+    createTwoMillionRecords(Hotel, 'hotel'),
+    createTwoMillionRecords(Hotel, 'hotel'),
+    createTwoMillionRecords(Hotel, 'hotel'),
+    createTwoMillionRecords(Hotel, 'hotel'),
+    createTwoMillionRecords(Hotel, 'hotel'),
+  ]);
+  sequelize.close();
+  return 'Done!';
+}
+
+// createTwoMillionRecords(Hotel, 'hotel')
+// .then(() => {
+//   createTwoMillionRecords(Hotel, 'hotel')
+//   .then(() => {
+//     createTwoMillionRecords(Hotel, 'hotel')
+//      .then(() => {
+//       createTwoMillionRecords(Hotel, 'hotel')
+//        .then(() => {
+//          createTwoMillionRecords(Hotel, 'hotel')
+//        }).catch(error => console.log(error));
+//     }).catch(error => console.log(error));
+//   }).catch(error => console.log(error));
+// }).catch(error => console.log(error))
 // for (let i = 0; i < 5; i += 1) {
 //   insertBulkForModel(Hotel, createBulkArray('hotel', 100000))
 //   .then(() => {

@@ -49,7 +49,7 @@ let randomItemAutoId = (type) => {
 };
 
 let insertBulkRecords = () => {
-  for (let i = 0; i < 4; i += 1) {
+  for (let i = 0; i < 20; i += 1) {
     let tmpArr = [];
     for (let j = 0; j < 50000; j += 1) {
       tmpArr.push(randomItemAutoId('hotel'));
