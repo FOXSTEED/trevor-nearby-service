@@ -16,6 +16,7 @@
     "test": "jest --forceExit",
     "initDb": "node models/initDb.js",
     "seedDb": "node --max_old_space_size=7168 models/pgSeq.js",
+    "seedRaw": "node --max_old_space_size=7168 models/rawPg/rawSeed.js",
     "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve",
     "start-dev": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve-dev"
   },

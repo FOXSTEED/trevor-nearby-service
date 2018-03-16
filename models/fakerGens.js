@@ -35,7 +35,7 @@ let fakerItemRawPg = () => {
     num_reviews: faker.random.number({ min: 0, max: 10 }),
     ranking: faker.random.number({ min: 0, max: 5 }),
     tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
-    image_url: randomImagesRaw[randomTypeNum]
+    image_url: randomImagesRaw[randomTypeNum][faker.random.number({ min: 0, max: 5,})]
   };
   return item;
 }
@@ -52,7 +52,7 @@ randomTypeNum + 1,
     faker.random.number({ min: 0, max: 5 }),
     faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
     randomImagesRaw[randomTypeNum][faker.random.number({ min: 0, max: 5,})],
-    new Date().toUTCString()
+    
   ];
   return item;
 }
