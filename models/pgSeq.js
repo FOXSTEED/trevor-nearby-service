@@ -23,12 +23,7 @@ let randomItemAutoId = () => {
 
 let options = ['hotel', 'attraction', 'restaurant'];
 const time = new Date().getTime();
-console.log(`Seeding started: ${new Date().toLocaleTimeString()}`)
-
-
-
-
-
+console.log(`Seeding started: ${new Date().toLocaleTimeString()}`);
 // 10 mil by three, divide that by 50k to see how much loop for each
  
 // do this 66 times of 50k randomitemautoid
@@ -40,14 +35,14 @@ function getRandomIntInclusive(min, max) {
 
 async function seedDb() {
 
-    for (let j = 0; j < 68; j++) {//66 => 22 
+    for (let j = 0; j < 201; j++) {
       let tmp = [];
-      for (let x = 0; x < 50000; x++) {//50k => 150k
+      for (let x = 0; x < 50000; x++) {
         tmp.push(randomItemAutoId());
       }
-      try{
-
-        await insertBulkForModel(tmp);
+      try {
+        const insert = insertBulkForModel(tmp);
+        await insert;
       } catch (error) {
         return error;
       }
@@ -63,12 +58,14 @@ async function insertBulkForModel(arr) {
     hooks: false,
     logging: false,
     returning: false,
+
   });
+  await Activity.query.bulkInsert('activities',arr)
 }
 async function bulk() {
-  for (let i = 0; i < 3; i++) {
+
     let x = seedDb();
     await x;
-  }
+  
 }
 bulk();
