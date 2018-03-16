@@ -3,8 +3,8 @@ const randomCoordinates = require('./randomCoordinates');
 const {randomImages, randomImagesRaw } = require('./randomImages');
 
 
-let coords = randomCoordinates.getRandomCoordinates();
 let fakerItemSequelize = () => {
+  let coords = randomCoordinates.getRandomCoordinates();
   let options = ['hotel', 'attraction', 'restaurant'];
 
   let item = {
@@ -24,17 +24,18 @@ let fakerItemSequelize = () => {
 
 
 let fakerItemRawPg = () => {
+  let coords = randomCoordinates.getRandomCoordinates();  
   let randomTypeNum = faker.random.number({min: 0, max: 2});
   let item = {
     attraction_type: randomTypeNum + 1,
     name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
     latitude: coords.latitude,
     longitude: coords.longitude,
-    address: faker.address.streetAddress(true),
+    address: faker.address.streetAddress('###'),
     rating: faker.random.number({ min: 0, max: 10 }),
-    num_reviews: faker.random.number({ min: 0, max: 10 }),
+    num_reviews: faker.random.number({ min: 0, max: 7 }),
     ranking: faker.random.number({ min: 0, max: 5 }),
-    tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
+    tags: faker.lorem.words(faker.random.number({ min: 0, max: 3 })), // stringified array
     image_url: randomImagesRaw[randomTypeNum][faker.random.number({ min: 0, max: 5,})]
   };
   return item;
@@ -44,6 +45,7 @@ let fakerItemRawPgArray = () => {
   let item = [
 randomTypeNum + 1,
     faker.address.city(faker.random.number({ min: 0, max: 3 })),
+
     coords.latitude,
     coords.longitude,
     faker.address.streetAddress('###'),

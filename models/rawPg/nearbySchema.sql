@@ -11,7 +11,7 @@ CREATE TABLE Nearby (
   ranking integer,
   tags varchar(100),
   image_url varchar(125),
-  created_at date not null default CURRENT_DATE
+  created_at timestamp without time zone default (now() at time zone 'utc')
 );
 
 CREATE TABLE AttractionType (

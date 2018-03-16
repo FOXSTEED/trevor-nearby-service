@@ -6,6 +6,7 @@ const {  sequelize, Activity } = require('./models.js');
 let randomItemAutoId = () => {
   let coords = randomCoordinates.getRandomCoordinates();
 
+  let options = ['hotel', 'attraction', 'restaurant'];
   let item = {
     type: options[faker.random.number({min: 0, max: 2})],
     name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
@@ -21,7 +22,6 @@ let randomItemAutoId = () => {
   return item;
 };
 
-let options = ['hotel', 'attraction', 'restaurant'];
 const time = new Date().getTime();
 console.log(`Seeding started: ${new Date().toLocaleTimeString()}`);
 // 10 mil by three, divide that by 50k to see how much loop for each

@@ -78,7 +78,7 @@ const insertBulk = async (count) => {
 }
 async function millionAsync() {
   console.time('seed');
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
    await x();
@@ -92,5 +92,6 @@ async function millionAsync() {
 
 // insertBulk();
 
+millionAsync();
 millionAsync();
 
