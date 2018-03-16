@@ -10,12 +10,12 @@
   "scripts": {
     "dev": "webpack -d --watch",
     "build": "webpack -d",
-    "seedBulk": " node --max_old_space_size=7168 models/seedBulkData.js",
+    "seedBulk": "node --max_old_space_size=7168 models/seedBulkData.js",
     "serve": "PORT=3003 node server/server.js",
     "serve-dev": "PORT=3003 nodemon server/server.js",
     "test": "jest --forceExit",
     "initDb": "node models/initDb.js",
-    "seedDb": "node models/pgSeq.js",
+    "seedDb": "node --max_old_space_size=7168 models/pgSeq.js",
     "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve",
     "start-dev": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve-dev"
   },
