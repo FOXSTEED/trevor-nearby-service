@@ -3,11 +3,12 @@ const randomCoordinates = require('./randomCoordinates');
 const {randomImages, randomImagesRaw } = require('./randomImages');
 
 
-let fakerItemSequelize = () => {
+let fakerItemObject = (i) => {
   let coords = randomCoordinates.getRandomCoordinates();
   let options = ['hotel', 'attraction', 'restaurant'];
 
   let item = {
+    id:i.id,
     type: options[faker.random.number({min: 0, max: 2})],
     name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
     latitude: coords.latitude,
@@ -61,5 +62,5 @@ randomTypeNum + 1,
 
 
 module.exports = {
-  fakerItemSequelize, fakerItemRawPg, fakerItemRawPgArray
+  fakerItemObject, fakerItemRawPg, fakerItemRawPgArray
 }

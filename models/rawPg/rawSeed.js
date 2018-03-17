@@ -94,4 +94,3 @@ async function millionAsync() {
 
 millionAsync();
 millionAsync();
-
