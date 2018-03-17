@@ -1,61 +1,55 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const autoIncrement = require('mongoose-auto-increment');
+const MongoClient = require('mongodb').MongoClient;
+require('dotenv').config();
+const { fakerItemObject } = require('../fakerGens');
 
-const faker = require('faker');
-const randomCoordinates = require('../randomCoordinates');
-const randomImages = require('../randomImages');
+const url = process.env.MONGO_CN || 'mongodb://localhost:27017/nearby';
 
-let randomItemAutoId = (type) => {
-  let coords = randomCoordinates.getRandomCoordinates();
+let item = fakerItemObject();
 
-  let item = {
-    type: type,
-    name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
-    latitude: coords.latitude,
-    longitude: coords.longitude,
-    address: faker.address.streetAddress(true),
-    rating: faker.random.number({ min: 0, max: 10 }),
-    num_reviews: faker.random.number({ min: 0, max: 10 }),
-    ranking: faker.random.number({ min: 0, max: 5 }),
-    tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
-    image_url: randomImages(type)
-  };
+MongoClient.connect(url, (err, client) => {
+  
+  console.log('connected to server');
+  const db = client.db();
 
+  let operation = insertOneMillionDocuments;
 
-  return item;
-};
-
-
-
-mongoose.connect('mongodb://localhost/nearby').then(console.log('connected')).catch(error => console.log(error));
-
+  let seedFn = async  (db) => {
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    client.close();    
+  }
+  seedFn(db);
+});
 
 
+const insertOneMillionDocuments = async (db) => {
+  let promises = [];
+  const collection = db.collection('docs');
+  console.time('1m')
 
-
-
-
-const nearbySchema = new Schema({
-    type: String,
-    name: String,
-    latitude: Schema.Types.Number,
-    longitude: Schema.Types.Number,
-    address: String,
-    rating: Number,
-    num_reviews: Number,
-    ranking: Number,
-    tags:  String,// stringified array
-    image_url: String,
-    createdAt: { type: Date, default: Date.now},
-    updatedAt: { type: Date, default: Date.now}
-  });
+  for (let i = 0; i < 1000000; i += 1) {
+    promises.push(
+      { insertOne: { "document": item() }});
+    }
+    await collection.bulkWrite(promises);
+    console.timeEnd('1m');
+   }
 
 
 
-  let Nearby = mongoose.model('Nearby', nearbySchema);
-  Nearby.create(randomItemAutoId('hotel')).then(data => {
-    mongoose.disconnect();
-    console.log(data)
-  }).catch(error => console.log(error));
+
+const insertDocument = (db, item) => {
+  const collection = db.collection('docs');
+  collection.insertOne(item);  
+}
+
+
 

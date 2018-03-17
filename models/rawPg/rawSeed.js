@@ -31,33 +31,6 @@ const generateBulkFakeData = async (count) => {
 }
 
 
-let insertCountRandom = (count) => {
-  let x = 0;
-
-  while (x < count) {
-    let item = fakerItemRawPgArray();
-    db
-    .none('INSERT INTO nearby(attraction_type, name, latitude, longitude, address, rating, num_reviews, ranking, tags, image_url, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', item)
-    .catch(error => console.log(`error inserting ${item} with: ${error}`));
-    x += 1;
-  }
-}
-
-
-let insertCountRandomAsync = async (count) => {
-  let x = 0;
-  let promises = [];
-  while (x < count) {
-    let item = fakerItemRawPgArray();
-    promises.push(db
-    .none('INSERT INTO nearby(attraction_type, name, latitude, longitude, address, rating, num_reviews, ranking, tags, image_url, created_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)', item)
-    .catch(error => console.log(`error inserting ${item} with: ${error}`)));
-    x += 1;
-  }
-  await Promise.all(promises);
-
-}
-// initAttractionTypeTable();
 
 const insertBulk = async (count) => {
   let data = await generateBulkFakeData(10000);
@@ -90,8 +63,6 @@ async function millionAsync() {
 
 }
 
-// insertBulk();
 
 millionAsync();
 millionAsync();
-

@@ -3,23 +3,28 @@ const randomCoordinates = require('./randomCoordinates');
 const {randomImages, randomImagesRaw } = require('./randomImages');
 
 
-let fakerItemSequelize = () => {
+let fakerItemObject = () => {
   let coords = randomCoordinates.getRandomCoordinates();
   let options = ['hotel', 'attraction', 'restaurant'];
+  var counter = counter || 0
+  return function() {
+    let item = {
+      id:counter,
+      type: options[faker.random.number({min: 0, max: 2})],
+      name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      address: faker.address.streetAddress(true),
+      rating: faker.random.number({ min: 0, max: 10 }),
+      num_reviews: faker.random.number({ min: 0, max: 10 }),
+      ranking: faker.random.number({ min: 0, max: 5 }),
+      tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
+      image_url: randomImages(this.type)
+    };
+    counter++
+    return item;
 
-  let item = {
-    type: options[faker.random.number({min: 0, max: 2})],
-    name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
-    latitude: coords.latitude,
-    longitude: coords.longitude,
-    address: faker.address.streetAddress(true),
-    rating: faker.random.number({ min: 0, max: 10 }),
-    num_reviews: faker.random.number({ min: 0, max: 10 }),
-    ranking: faker.random.number({ min: 0, max: 5 }),
-    tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
-    image_url: randomImages(this.type)
-  };
-  return item;
+  }
 };
 
 
@@ -61,5 +66,5 @@ randomTypeNum + 1,
 
 
 module.exports = {
-  fakerItemSequelize, fakerItemRawPg, fakerItemRawPgArray
+  fakerItemObject, fakerItemRawPg, fakerItemRawPgArray
 }
