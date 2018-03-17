@@ -1,6 +1,10 @@
 const faker = require('faker');
 const randomCoordinates = require('./randomCoordinates');
 const randomImages = require('./randomImages');
+
+const Promise = require('bluebird');
+
+Promise.promisifyAll(fs);
 const {
   sequelize, Restaurant, Hotel, Attraction
 } = require('./models.js');
@@ -25,6 +29,55 @@ let randomItem = (type, id) => {
   return item;
 };
 
+let randomItemAutoId = (type) => {
+  let coords = randomCoordinates.getRandomCoordinates();
+
+  let item = {
+    name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
+    latitude: coords.latitude,
+    longitude: coords.longitude,
+    address: faker.address.streetAddress(true),
+    rating: faker.random.number({ min: 0, max: 10 }),
+    num_reviews: faker.random.number({ min: 0, max: 10 }),
+    ranking: faker.random.number({ min: 0, max: 5 }),
+    tags: faker.lorem.words(faker.random.number({ min: 0, max: 5 })), // stringified array
+    image_url: randomImages(type)
+  };
+
+
+  return item;
+};
+
+let insertBulkRecords = () => {
+  for (let i = 0; i < 20; i += 1) {
+    let tmpArr = [];
+    for (let j = 0; j < 50000; j += 1) {
+      tmpArr.push(randomItemAutoId('hotel'));
+    }
+    Hotel.bulkCreate(tmpArr).then(() => {
+      console.log('Created records');
+    })
+    .catch(error => console.log(error));
+  }
+}
+
+let writeFiftyThousandItemsToFile = () => {
+  for (let i = 0; i < 50000; i += 1) {
+  fs.appendFileAsync('faker.js', `${JSON.stringify(randomItemAutoId('hotel'), null, '\t')},\n`).then(() => {
+    fs.close
+    console.log('successfully saved file');
+  }).catch((error) => {
+    if (error) {
+      fs.appendFileAsync('faker2.js', `${JSON.stringify(randomItemAutoId('hotel'), null, '\t')},\n`).then(() => {
+        console.log('saved to faker2.js')
+      }).catch(error => {
+        console.log(error);
+      })
+    }
+    console.log(`Error saving file: ${error}`);
+  });
+  }
+};
 let promises = {
   hotels: [],
   attractions: [],
@@ -43,8 +96,8 @@ let rejections = {
   restaurant: 0
 };
 
-let insertItem = (type, Model, id) => {
-  let item = Model.build(randomItem(type, id));
+let insertItem = (type, Model) => {
+  let item = Model.build(randomItemAutoId(type));
 
   return item.save()
     .then(() => {
@@ -54,14 +107,6 @@ let insertItem = (type, Model, id) => {
       rejections[type] += 1;
     });
 };
-
-console.log('Seeding database...');
-
-for (let i = 0; i < 200; i += 1) {
-  promises.hotels.push(insertItem('hotel', Hotel, i));
-  promises.restaurants.push(insertItem('restaurant', Restaurant, i));
-  promises.attractions.push(insertItem('attraction', Attraction, i));
-}
 
 let allHotels = Promise.all(promises.hotels)
   .then(() => {
@@ -110,11 +155,4 @@ let allAttractions = Promise.all(promises.attractions)
     console.log(err);
   });
 
-Promise.all([allHotels, allRestaurants, allAttractions])
-  .then(() => {
-    sequelize.close();
-    process.exit();
-  })
-  .catch(() => {
-    process.exit();
-  });
+insertBulkRecords();
