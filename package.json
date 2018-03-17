@@ -15,6 +15,7 @@
     "serve-dev": "PORT=3003 nodemon server/server.js",
     "test": "jest --forceExit",
     "initDb": "node models/initDb.js",
+    "seedMongo": "node models/mongo/initMongo.js",
     "seedDb": "node --max_old_space_size=7168 models/pgSeq.js",
     "seedRaw": "node --max_old_space_size=7168 models/rawPg/rawSeed.js",
     "start": "npm run-script initDb && npm run-script seedDb && npm run-script build && npm run-script serve",
@@ -43,6 +44,7 @@
     "increase-memory-limit": "^1.0.6",
     "jest": "^22.4.2",
     "km-to-mi": "^1.0.0",
+    "mongodb": "^3.0.4",
     "mongoose": "^5.0.10",
     "mongoose-auto-increment": "^5.0.1",
     "os": "^0.1.1",
@@ -52,6 +54,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
+    "save": "^2.3.2",
     "sequelize": "^4.33.4",
     "style-loader": "^0.20.2",
     "webpack": "^3.11.0"
