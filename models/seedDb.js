@@ -163,12 +163,12 @@ let allAttractions = Promise.all(promises.attractions)
     console.log(err);
   });
 
-// Promise.all([allHotels, allRestaurants, allAttractions])
-//   .then(() => {
-//     sequelize.close();
-//     process.exit();
-//   })
-//   .catch(() => {
-//     process.exit();
-//   });
+Promise.all([allHotels, allRestaurants, allAttractions])
+  .then(() => {
+    sequelize.close();
+    process.exit();
+  })
+  .catch(() => {
+    process.exit();
+  });
 insertBulkRecords();
