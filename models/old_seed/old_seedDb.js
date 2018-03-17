@@ -1,7 +1,7 @@
 const faker = require('faker');
 const randomCoordinates = require('./randomCoordinates');
 const randomImages = require('./randomImages');
-const fs = require('fs');
+
 const Promise = require('bluebird');
 
 Promise.promisifyAll(fs);
@@ -108,14 +108,6 @@ let insertItem = (type, Model) => {
     });
 };
 
-// console.log('Seeding database...');
-// console.time();
-// for (let i = 0; i < 50000; i += 1) {
-//   promises.hotels.push(insertItem('hotel', Hotel));
-//   promises.restaurants.push(insertItem('restaurant', Restaurant));
-//   promises.attractions.push(insertItem('attraction', Attraction));
-// }
-// console.timeEnd();
 let allHotels = Promise.all(promises.hotels)
   .then(() => {
     console.log('\nHotels:');
@@ -163,12 +155,4 @@ let allAttractions = Promise.all(promises.attractions)
     console.log(err);
   });
 
-Promise.all([allHotels, allRestaurants, allAttractions])
-  .then(() => {
-    sequelize.close();
-    process.exit();
-  })
-  .catch(() => {
-    process.exit();
-  });
 insertBulkRecords();
