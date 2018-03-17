@@ -11,32 +11,26 @@ MongoClient.connect(url, (err, client) => {
   console.log('connected to server');
   const db = client.db();
 
-  let operation = insertHundredAsync;
+  let operation = insertOneMillionDocuments;
 
-  //  operation(db).then(() => {
-  //   console.log('done~')
-  //   console.timeEnd('insert1m')
-  //   client.close();
-  //  }).catch(error => {
-  //    console.log(error);
-  //    client.close();
-  //  })
   let seedFn = async  (db) => {
     await operation(db);
     await operation(db);
     await operation(db);
-    client.close();
-    
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    await operation(db);
+    client.close();    
   }
-
   seedFn(db);
-
-
-
 });
 
 
-const insertHundredAsync = async (db) => {
+const insertOneMillionDocuments = async (db) => {
   let promises = [];
   const collection = db.collection('docs');
   console.time('1m')
@@ -50,43 +44,12 @@ const insertHundredAsync = async (db) => {
    }
 
 
-const counter = (db) => {
-  const collection = db.collection('counter');
-  collection.insert({_id: "item_id" , sequence_value : 0 })
-    .then(() => {
-      console.log('inserted ' + 1)
-    })
-    .catch(error => console.log(error));
-}
+
 
 const insertDocument = (db, item) => {
   const collection = db.collection('docs');
-
-  collection.insertOne(item)
-  
+  collection.insertOne(item);  
 }
-
- const getValueForNextSequence = (db) => {
-    //  db.collection('counter').findAndModify({
-    // query: {_id: "item_id"},
-    // update: { $inc: {sequence_value: 1}},
-    // new:true})
-
-    const collection = db.collection('counter');
-    var sequenceDoc = collection.findOneAndReplace(
-        {_id: "item_id" },
-        {$inc:{sequence_value:1}},
-        {
-          upsert:true,
-          returnOriginal: false
-        });
-    
-     return sequenceDoc.then((data) => {
-       return data.value.sequence_value
-     }).catch(error => error)
-
-
- }
 
 
 
