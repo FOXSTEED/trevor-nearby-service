@@ -1,7 +1,12 @@
-FROM node:8.9.4
-RUN mkdir /nearby_service
-ADD . /nearby_service
-WORKDIR /nearby_service
-RUN npm i -q
-EXPOSE 3003
-CMD ["npm", "start"]
+FROM node:carbon
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+COPY . .
+
+ENV CON_POINT=127.0.0.1
+ENV KEYSPACE=nearbytrevor
+
+RUN ["npm", "install"]

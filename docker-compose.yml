@@ -1,21 +1,16 @@
-version: '2'
+version: '3.1'
+
 services:
-  postgres:
-    image: postgres:9.6.2-alpine
+  cassandra:
+    image: cassandra:latest
+
+  seedcass:
+    image: seedcass:test
     environment:
-      POSTGRES_USER: nearbyapp
-      POSTGRES_DB: nearbyitems
-  nearby-component:
-    env_file:
-      - .env
-    image: kguinto/nearby-component
-    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; npm start'
-    volumes:
-      - .:/nearby_service/
-    ports:
-      - "3003:3003"
+      CON_POINT: cassandra
+      KEYSPACE: nearbytrevor
     depends_on:
-      - postgres
-    environment:
-      DATABASE_URL: postgres://nearbyapp@postgres/nearbyitems
-      GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY}"
+      - cassandra
+    command: npm run-script initCass
+
+    
