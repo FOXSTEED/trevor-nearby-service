@@ -30,21 +30,25 @@ let fakerItemObject = () => {
 
 let fakerItemRawPg = () => {
   let coords = randomCoordinates.getRandomCoordinates();  
-  let randomTypeNum = faker.random.number({min: 0, max: 2});
-  let item = {
-    attraction_type: randomTypeNum + 1,
-    name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
-    latitude: coords.latitude,
-    longitude: coords.longitude,
-    address: faker.address.streetAddress('###'),
-    rating: faker.random.number({ min: 0, max: 10 }),
-    num_reviews: faker.random.number({ min: 0, max: 7 }),
-    ranking: faker.random.number({ min: 0, max: 5 }),
-    tags: faker.lorem.words(faker.random.number({ min: 0, max: 3 })), // stringified array
-    image_url: randomImagesRaw[randomTypeNum][faker.random.number({ min: 0, max: 5,})]
-  };
-  return item;
+  var counter = counter || 0
+  return function() {
+    let item = {
+      attraction_id: counter + 1,
+      name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      address: faker.address.streetAddress('###'),
+      rating: faker.random.number({ min: 0, max: 10 }),
+      num_reviews: faker.random.number({ min: 0, max: 7 }),
+      ranking: faker.random.number({ min: 0, max: 5 }),
+      tags: faker.lorem.words(faker.random.number({ min: 0, max: 3 })), // stringified array
+      image_url: randomImagesRaw[randomTypeNum][faker.random.number({ min: 0, max: 5,})]
+    };
+    counter++;
+    return item;
+  }
 }
+
 let fakerItemRawPgArray = () => {
   let randomTypeNum = faker.random.number({min: 0, max: 2});
   let item = [

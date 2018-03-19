@@ -36,7 +36,7 @@ const insertBulk = async(table) => {
   let helped = pgp
     .helpers
     .insert(data, [
-    'attraction_type',
+    'attraction_id',
     'name',
     'latitude',
     'longitude',
