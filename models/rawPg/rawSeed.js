@@ -65,7 +65,7 @@ async function millionAsync() {
 
 async function hotelThreeMillionAsync() {
   console.time('seedH');
-  for (let i = 0; i < 333; i++) {
+  for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
     await x('hotel');
@@ -77,7 +77,7 @@ async function hotelThreeMillionAsync() {
 }
 async function attractionThreeMillionAsync() {
   console.time('seedA');
-  for (let i = 0; i < 333; i++) {
+  for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
     await x('attraction');
@@ -89,7 +89,7 @@ async function attractionThreeMillionAsync() {
 }
 async function restaurantThreeMillionAsync() {
   console.time('seedR');
-  for (let i = 0; i < 333; i++) {
+  for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
     await x('restaurant');
