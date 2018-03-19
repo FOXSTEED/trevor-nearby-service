@@ -24,7 +24,6 @@ app.get('/restaurants/:id', (req, res) => {
   if (req.params.id) {
     getRestaurant(req.params.id)
       .then((data) => {
-        console.log(data);
         res.send(data)
       })
       .catch((err) => {
@@ -38,7 +37,6 @@ app.get('/hotels/:id', (req, res) => {
   if (req.params.id) {
     getHotel(req.params.id)
       .then((data) => {
-        console.log(data);
         res.send(data)
       })
       .catch((err) => {
@@ -52,7 +50,6 @@ app.get('/attractions/:id', (req, res) => {
   if (req.params.id) {
     getAttraction(req.params.id)
       .then((data) => {
-        console.log(data);
         res.send(data)
       })
       .catch((err) => {
