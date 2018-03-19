@@ -1,5 +1,5 @@
 
-CREATE TABLE Restaurant (
+CREATE TABLE IF NOT EXISTS Restaurant (
   id SERIAL PRIMARY KEY,
   attraction_type integer not null,
   name varchar(150) not null,
@@ -14,7 +14,7 @@ CREATE TABLE Restaurant (
   created_at timestamp without time zone default (now() at time zone 'utc')
 );
 
-CREATE TABLE Attraction (
+CREATE TABLE IF NOT EXISTS Attraction (
   id SERIAL PRIMARY KEY,
   attraction_type integer not null,
   name varchar(150) not null,
@@ -29,7 +29,7 @@ CREATE TABLE Attraction (
   created_at timestamp without time zone default (now() at time zone 'utc')
 );
 
-CREATE TABLE Hotel (
+CREATE TABLE IF NOT EXISTS Hotel (
   id SERIAL PRIMARY KEY,
   attraction_type integer not null,
   name varchar(150) not null,
@@ -44,8 +44,10 @@ CREATE TABLE Hotel (
   created_at timestamp without time zone default (now() at time zone 'utc')
 );
 
+
+/*
 CREATE TABLE AttractionType (
   id SERIAL PRIMARY KEY,
   name VARCHAR(15) NOT NULL
 );
-
+*/
