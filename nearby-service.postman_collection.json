@@ -1,0 +1,135 @@
+{
+	"info": {
+		"name": "nearby-service",
+		"_postman_id": "c49e1e5c-98d9-82c8-ece6-811575e21975",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/restaurants/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3003/restaurants/{{id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"restaurants",
+						"{{id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/hotels/:id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "26fba154-ae1b-4ac2-bfc2-19ebbce16ee9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3003/hotels/{{id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"hotels",
+						"{{id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "/attractions/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:3003/attractions/{{id}}",
+					"host": [
+						"localhost"
+					],
+					"port": "3003",
+					"path": [
+						"attractions",
+						"{{id}}"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "727ff2ec-d338-465a-bd91-97c5f6d61d66",
+				"type": "text/javascript",
+				"exec": [
+					"function getRandomIntInclusive(min, max) {",
+					"  min = Math.ceil(min);",
+					"  max = Math.floor(max);",
+					"  return Math.floor(Math.random() * (max - min + 1)) + min;",
+					"}",
+					"",
+					"pm.variables.set(\"id\", getRandomIntInclusive(1, 2999999))"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "117f1251-8399-42e4-811e-1bff3a41cf58",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Response time is less than 100ms\", function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(100);",
+					"});",
+					"",
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"json returns correct props\", function () {",
+					"    var jsonData = pm.response.json();",
+					"    pm.expect(typeof jsonData.id).to.equal(\"number\");",
+					"    pm.expect(typeof jsonData.name).to.equal(\"string\");",
+					"    pm.expect(typeof jsonData.latitude).to.equal(\"number\")",
+					"    pm.expect(typeof jsonData.longitude).to.equal(\"number\");",
+					"    pm.expect(typeof jsonData.address).to.equal(\"string\");",
+					"    pm.expect(typeof jsonData.rating).to.equal(\"number\");",
+					"    pm.expect(typeof jsonData.num_reviews).to.equal(\"number\");",
+					"    pm.expect(typeof jsonData.ranking).to.equal(\"number\");",
+					"    pm.expect(typeof jsonData.tags).to.equal(\"string\");",
+					"    pm.expect(typeof jsonData.image_url).to.equal(\"string\");",
+					"});",
+					"",
+					""
+				]
+			}
+		}
+	]
+}

@@ -31,12 +31,12 @@ const generateBulkFakeData = async(count) => {
   return tmp;
 };
 
-const insertBulk = async(count) => {
+const insertBulk = async(table) => {
   let data = await generateBulkFakeData(10000);
   let helped = pgp
     .helpers
     .insert(data, [
-    'attraction_type',
+    'attraction_id',
     'name',
     'latitude',
     'longitude',
@@ -46,7 +46,7 @@ const insertBulk = async(count) => {
     'ranking',
     'tags',
     'image_url'
-  ], 'nearby')
+  ], table)
 
   return await db.none(helped);
 }
@@ -63,7 +63,46 @@ async function millionAsync() {
 
 }
 
+async function hotelThreeMillionAsync() {
+  console.time('seedH');
+  for (let i = 0; i < 502; i++) {
+    const x = insertBulk;
+    console.time('10k')
+    await x('hotel');
+    console.timeEnd('10k');
+  }
+  console.timeEnd('seedH');
+  process.exit();
 
+}
+async function attractionThreeMillionAsync() {
+  console.time('seedA');
+  for (let i = 0; i < 502; i++) {
+    const x = insertBulk;
+    console.time('10k')
+    await x('attraction');
+    console.timeEnd('10k');
+  }
+  console.timeEnd('seedA');
+  process.exit();
 
+}
+async function restaurantThreeMillionAsync() {
+  console.time('seedR');
+  for (let i = 0; i < 502; i++) {
+    const x = insertBulk;
+    console.time('10k')
+    await x('restaurant');
+    console.timeEnd('10k');
+  }
+  console.timeEnd('seedR');
+  process.exit();
+
+}
+/*
 millionAsync();
 millionAsync();
+*/
+hotelThreeMillionAsync();
+attractionThreeMillionAsync();
+restaurantThreeMillionAsync();
