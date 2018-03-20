@@ -7,7 +7,9 @@ const { fakerItemObject } = require('../fakerGens');
 
 const url = process.env.MONGO_CN || 'mongodb://localhost:27017/nearby';
 
-let item = fakerItemObject();
+let restaurantItem = fakerItemObject('restaurant');
+let hotelItem = fakerItemObject('hotel');
+let attractionItem = fakerItemObject('attraction');
 
 if (cluster.isMaster){
   console.log(`Master ${process.pid} is running`);
@@ -22,24 +24,38 @@ if (cluster.isMaster){
   });
 } else {
   console.time('concurrent insertion of 10million: ')
-  seedMongo();
+  seedCollection('hotel');
+  seedCollection('attraction');
+  seedCollection('restaurant');
   console.log(`Worker ${process.pid} started`);
 }
 
-function seedMongo(){
+function generateByName(name) {
+  switch(name) {
+    case 'hotel':
+      return hotelItem();
+          break;
+    case 'attraction':
+      return attractionItem();
+          break;
+    case 'restaurant':
+        return restaurantItem();
+        break;
+    default: null;
+  }
+}
+function seedCollection(name) {
   MongoClient.connect(url).then((client) => {
-    
+    console.log('connected to server');
+    const db = client.db();
+    const collection = db.collection(name);
+    const size = 20000; 
+    var count = parseInt(10000000 / numCPUs);
 
-  console.log('connected to server');
-  const db = client.db();
-  const collection = db.collection('concurrent')
-  
-  var count = parseInt(10000000 / numCPUs);
-  const size = 20000; 
-  let seedFn = async () => {
-    let docs = _.range(0, size).map((id) => {
-      return { insertOne: { "document": item() }}
-    });
+    let seedFn = async () => {
+      let docs = _.range(0, size).map((id) => {
+        return { insertOne: { "document": generateByName(name) }}
+      });
     
     await collection.bulkWrite(docs, {ordered: false});
     count -= size;
@@ -51,8 +67,7 @@ function seedMongo(){
       process.exit();        
     }
   }
-  
-  seedFn();
-});
-};
+    seedFn();
+    });
+} 
 
