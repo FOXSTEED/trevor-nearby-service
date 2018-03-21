@@ -15,6 +15,6 @@ const queryNTimes = (n, query, label) => {
 }
 
 
-queryNTimes(500, getAttraction, 'attraction');
-queryNTimes(500, getHotel, 'hotel');
-queryNTimes(500, getRestaurant, 'restaurant');
+queryNTimes(process.argv[2], getAttraction, 'attraction');
+queryNTimes(process.argv[2], getHotel, 'hotel');
+queryNTimes(process.argv[2], getRestaurant, 'restaurant');

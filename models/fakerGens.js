@@ -3,14 +3,14 @@ const randomCoordinates = require('./randomCoordinates');
 const {randomImages, randomImagesRaw } = require('./randomImages');
 
 
-let fakerItemObject = () => {
-  let coords = randomCoordinates.getRandomCoordinates();
+let fakerItemObject = (type) => {
   let options = ['hotel', 'attraction', 'restaurant'];
   var counter = counter || 0
   return function() {
+    let coords = randomCoordinates.getRandomCoordinates();
     let item = {
       id:counter,
-      type: options[faker.random.number({min: 0, max: 2})],
+      type: type,
       name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
       latitude: coords.latitude,
       longitude: coords.longitude,
