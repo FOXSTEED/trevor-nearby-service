@@ -3,14 +3,14 @@ const randomCoordinates = require('./randomCoordinates');
 const {randomImages, randomImagesRaw } = require('./randomImages');
 
 
-let fakerItemObject = (type) => {
+let fakerItemObject = () => {
   let coords = randomCoordinates.getRandomCoordinates();
   let options = ['hotel', 'attraction', 'restaurant'];
   var counter = counter || 0
   return function() {
     let item = {
       id:counter,
-      type: type,
+      type: options[faker.random.number({min: 0, max: 2})],
       name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
       latitude: coords.latitude,
       longitude: coords.longitude,
@@ -28,7 +28,7 @@ let fakerItemObject = (type) => {
 };
 
 
-let fakerItemRawPg = () => {
+let fakerItemRawPg = (type = 1) => {
   let coords = randomCoordinates.getRandomCoordinates();  
   var counter = counter || 0
   return function() {
@@ -42,7 +42,7 @@ let fakerItemRawPg = () => {
       num_reviews: faker.random.number({ min: 0, max: 7 }),
       ranking: faker.random.number({ min: 0, max: 5 }),
       tags: faker.lorem.words(faker.random.number({ min: 0, max: 3 })), // stringified array
-      image_url: randomImagesRaw[randomTypeNum][faker.random.number({ min: 0, max: 5,})]
+      image_url: randomImagesRaw[type][faker.random.number({ min: 0, max: 5,})]
     };
     counter++;
     return item;
