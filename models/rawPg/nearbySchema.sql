@@ -14,6 +14,8 @@ CREATE TABLE IF NOT EXISTS Restaurant (
   created_at timestamp without time zone default (now() at time zone 'utc')
 );
 
+CREATE INDEX "restaurants_id" ON "public"."restaurants"("attraction_id");
+
 CREATE TABLE IF NOT EXISTS Attraction (
   id SERIAL PRIMARY KEY,
   attraction_type integer not null,

@@ -8,6 +8,24 @@
 	"item": [
 		{
 			"name": "/restaurants/:id",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9050b20-e558-4512-b664-0c8b73783cad",
+						"type": "text/javascript",
+						"exec": [
+							"function getRandomIntInclusive(min, max) {",
+							"  min = Math.ceil(min);",
+							"  max = Math.floor(max);",
+							"  return Math.floor(Math.random() * (max - min + 1)) + min;",
+							"}",
+							"",
+							"pm.variables.set(\"id\", getRandomIntInclusive(1, 2999999))"
+						]
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -89,13 +107,7 @@
 				"id": "727ff2ec-d338-465a-bd91-97c5f6d61d66",
 				"type": "text/javascript",
 				"exec": [
-					"function getRandomIntInclusive(min, max) {",
-					"  min = Math.ceil(min);",
-					"  max = Math.floor(max);",
-					"  return Math.floor(Math.random() * (max - min + 1)) + min;",
-					"}",
-					"",
-					"pm.variables.set(\"id\", getRandomIntInclusive(1, 2999999))"
+					""
 				]
 			}
 		},
