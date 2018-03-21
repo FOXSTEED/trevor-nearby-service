@@ -29,9 +29,9 @@ let fakerItemObject = () => {
 
 
 let fakerItemRawPg = (type = 1) => {
-  let coords = randomCoordinates.getRandomCoordinates();  
   var counter = counter || 0
   return function() {
+    let coords = randomCoordinates.getRandomCoordinates();  
     let item = {
       attraction_id: counter + 1,
       name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
