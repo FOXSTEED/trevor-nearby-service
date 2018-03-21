@@ -5,6 +5,10 @@ const helpers = pgp.helpers;
 const {fakerItemRawPg, fakerItemRawPgArray} = require('../fakerGens.js');
 require('dotenv').config();
 
+const fakeAttraction = fakerItemRawPg(0);
+const fakeHotel = fakerItemRawPg(1);
+const fakeRestaurant = fakerItemRawPg(2);
+
 const cn = process.env.PG_RAW_CN || 'postgres://localhost:5432/pg_raw';
 const db = pgp(cn);
 
@@ -31,8 +35,37 @@ const generateBulkFakeData = async(count) => {
   return tmp;
 };
 
+const generateBulkFakeDataRest = async(count) => {
+  let tmp = [];
+  for (let i = 0; i < count; i += 1) {
+    await tmp.push(fakeRestaurant());
+  }
+  return tmp;
+};
+const generateBulkFakeDataAttr = async(count) => {
+  let tmp = [];
+  for (let i = 0; i < count; i += 1) {
+    await tmp.push(fakeAttraction());
+  }
+  return tmp;
+};
+const generateBulkFakeDataHot = async(count) => {
+  let tmp = [];
+  for (let i = 0; i < count; i += 1) {
+    await tmp.push(fakeHotel());
+  }
+  return tmp;
+};
+
 const insertBulk = async(table) => {
-  let data = await generateBulkFakeData(10000);
+  console.log(table);
+  if (table === 'restaurants') {
+    var data = await generateBulkFakeDataRest(10000);
+  } else if (table === 'hotels') {
+    var data = await generateBulkFakeDataHot(10000);
+  } else {
+    var data = await generateBulkFakeDataAttr(10000);
+  }
   let helped = pgp
     .helpers
     .insert(data, [
@@ -47,7 +80,6 @@ const insertBulk = async(table) => {
     'tags',
     'image_url'
   ], table)
-
   return await db.none(helped);
 }
 async function millionAsync() {
@@ -68,7 +100,7 @@ async function hotelThreeMillionAsync() {
   for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
-    await x('hotel');
+    await x('hotels');
     console.timeEnd('10k');
   }
   console.timeEnd('seedH');
@@ -80,7 +112,7 @@ async function attractionThreeMillionAsync() {
   for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
-    await x('attraction');
+    await x('attractions');
     console.timeEnd('10k');
   }
   console.timeEnd('seedA');
@@ -92,7 +124,7 @@ async function restaurantThreeMillionAsync() {
   for (let i = 0; i < 502; i++) {
     const x = insertBulk;
     console.time('10k')
-    await x('restaurant');
+    await x('restaurants');
     console.timeEnd('10k');
   }
   console.timeEnd('seedR');
@@ -104,5 +136,8 @@ millionAsync();
 millionAsync();
 */
 hotelThreeMillionAsync();
-attractionThreeMillionAsync();
+hotelThreeMillionAsync();
 restaurantThreeMillionAsync();
+restaurantThreeMillionAsync();
+attractionThreeMillionAsync();
+attractionThreeMillionAsync();
