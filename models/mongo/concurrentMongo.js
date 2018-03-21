@@ -4,18 +4,19 @@ const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 require('dotenv').config();
 const { fakerItemObject } = require('../fakerGens');
-
-const url = process.env.MONGO_CN || 'mongodb://localhost:27017/nearby';
+//process.env.MONGO_CN || 
+const url = 'mongodb://localhost:27017/nearbyMongoFix';
 
 let restaurantItem = fakerItemObject('restaurant');
 let hotelItem = fakerItemObject('hotel');
 let attractionItem = fakerItemObject('attraction');
+function forkWorkers(seeder) {
 
 if (cluster.isMaster){
   console.log(`Master ${process.pid} is running`);
 
   // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
+  for (let i = 0; i < numCPUs - 5; i++) {
     cluster.fork();
   }
 
@@ -24,11 +25,14 @@ if (cluster.isMaster){
   });
 } else {
   console.time('concurrent insertion of 10million: ')
-  seedCollection('hotel');
-  seedCollection('attraction');
-  seedCollection('restaurant');
+  seeder
   console.log(`Worker ${process.pid} started`);
 }
+}
+forkWorkers(seedCollection('hotel'));
+forkWorkers(seedCollection('attraction'));
+forkWorkers(seedCollection('restaurant'));
+
 
 function generateByName(name) {
   switch(name) {
@@ -50,16 +54,18 @@ function seedCollection(name) {
     const db = client.db();
     const collection = db.collection(name);
     const size = 20000; 
-    var count = parseInt(10000000 / numCPUs);
+    var count = 10000000;
 
     let seedFn = async () => {
       let docs = _.range(0, size).map((id) => {
         return { insertOne: { "document": generateByName(name) }}
       });
-    
+
+    console.time(`${name} 20k`)
     await collection.bulkWrite(docs, {ordered: false});
     count -= size;
     if (count > 0){
+      console.timeEnd(`${name} 20k`)
       seedFn();
     } else {
       console.timeEnd('concurrent insertion of 10million: ')
