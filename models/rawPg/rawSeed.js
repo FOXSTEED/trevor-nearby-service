@@ -148,10 +148,11 @@ async function nRecordsToInsertForTable(n, table) {
 millionAsync();
 millionAsync();
 */
-// hotelThreeMillionAsync();
-// hotelThreeMillionAsync();
-// restaurantThreeMillionAsync();
-// restaurantThreeMillionAsync();
-// attractionThreeMillionAsync();
-// attractionThreeMillionAsync();
-nRecordsToInsertForTable(460000, 'hotels');
+
+hotelThreeMillionAsync();
+hotelThreeMillionAsync();
+restaurantThreeMillionAsync();
+restaurantThreeMillionAsync();
+attractionThreeMillionAsync();
+attractionThreeMillionAsync();
+// nRecordsToInsertForTable(460000, 'hotels');
