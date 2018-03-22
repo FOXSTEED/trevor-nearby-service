@@ -1,3 +1,4 @@
+require('newrelic');
 const express = require('express');
 const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 const { getAttraction, getHotel, getRestaurant } = require('../models/rawPg/pgModels');
