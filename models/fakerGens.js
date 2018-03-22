@@ -9,7 +9,7 @@ let fakerItemObject = (type) => {
   return function() {
     let coords = randomCoordinates.getRandomCoordinates();
     let item = {
-      id:counter,
+      id:counter + 1,
       type: type,
       name: faker.address.city(faker.random.number({ min: 0, max: 3 })),
       latitude: coords.latitude,
@@ -29,7 +29,8 @@ let fakerItemObject = (type) => {
 
 
 let fakerItemRawPg = (type = 1) => {
-  var counter = counter || 0
+
+  var counter = counter || 9540000;
   return function() {
     let coords = randomCoordinates.getRandomCoordinates();  
     let item = {

@@ -131,13 +131,28 @@ async function restaurantThreeMillionAsync() {
   process.exit();
 
 }
+
+async function nRecordsToInsertForTable(n, table) {
+  console.time(`seed ${n}`);
+  let loopTimes = Math.ceil((n + 10) / 10000);
+
+  for (let i = 0; i < loopTimes; i += 1) {
+    const x = insertBulk;
+    console.time('10k');
+    await x(table);
+    console.timeEnd('10k');
+  }
+
+}
 /*
 millionAsync();
 millionAsync();
 */
+
 hotelThreeMillionAsync();
 hotelThreeMillionAsync();
 restaurantThreeMillionAsync();
 restaurantThreeMillionAsync();
 attractionThreeMillionAsync();
 attractionThreeMillionAsync();
+// nRecordsToInsertForTable(460000, 'hotels');
