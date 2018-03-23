@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3003;
 
 app.use(cors());
 
-app.use('/bundle.js', express.static('public/build/bundle.js'));
+app.use('/nearby/bundle.js', express.static('public/build/bundle.js'));
 
 app.use('/:id', express.static('public/'));
 
@@ -22,7 +22,7 @@ app.use('/:id', express.static('public/'));
  * 3 restaurant
  */
 
-app.get('/restaurants/:id', (req, res) => {
+app.get('/nearby/restaurants/:id', (req, res) => {
   if (req.params.id) {
     getRestaurant(req.params.id)
       .then((data) => {
@@ -35,7 +35,7 @@ app.get('/restaurants/:id', (req, res) => {
   }
 });
 
-app.get('/hotels/:id', (req, res) => {
+app.get('/nearby/hotels/:id', (req, res) => {
   if (req.params.id) {
     getHotel(req.params.id)
       .then((data) => {
@@ -48,7 +48,7 @@ app.get('/hotels/:id', (req, res) => {
   }
 });
 
-app.get('/attractions/:id', (req, res) => {
+app.get('/nearby/attractions/:id', (req, res) => {
   if (req.params.id) {
     getAttraction(req.params.id)
       .then((data) => {
