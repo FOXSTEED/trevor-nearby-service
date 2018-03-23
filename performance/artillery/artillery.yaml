@@ -5,12 +5,32 @@ config:
       arrivalRate: 20
     - duration: 60
       arrivalRate: 50
+  environments:
+    production:
+      target: "http://ec2-54-183-56-39.us-west-1.compute.amazonaws.com"
+      phases:
+        - duration: 120
+          arrivalRate: 10
+    staging: 
+      target: "http://127.0.0.1:3003"
+      phases:
+          - duration: 60
+            arrivalRate: 5
+          - duration: 120
+            arrivalRate: 5
+            rampTo: 50
+          - duration: 600
+            arrivalRate: 50 
   processor: "./artillery-config.js"
 
 scenarios:
-  - name: "get id"
+  - name: "get nearby attractions/hotels/restaurants"
     flow:
       - function: "randomNum"
       - get:
-          url: "/{{ id }}"
-      - log: "Sent a request to / {{ id }}"
+          url: "/restaurants/{{ id }}"
+      - get:
+          url: "/hotels/{{ id }}"
+      - get:
+          url: "/attractions/{{ id }}"
+      - log: "Sent a request to /{{ id }} for {{ $environment.target }}"
