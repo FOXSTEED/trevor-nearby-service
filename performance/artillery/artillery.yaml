@@ -1,0 +1,16 @@
+config:
+  target: "http://ec2-54-183-56-39.us-west-1.compute.amazonaws.com"
+  phases:
+    - duration: 60
+      arrivalRate: 20
+    - duration: 60
+      arrivalRate: 50
+  processor: "./artillery-config.js"
+
+scenarios:
+  - name: "get id"
+    flow:
+      - function: "randomNum"
+      - get:
+          url: "/{{ id }}"
+      - log: "Sent a request to / {{ id }}"
