@@ -1,16 +1,20 @@
 require('newrelic');
+const morgan = require('morgan');
 const express = require('express');
 const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 const { getAttraction, getHotel, getRestaurant } = require('../models/rawPg/pgModels');
 const cors = require('cors');
 require('dotenv').config();
 
+
 const app = express();
 const PORT = process.env.PORT || 3003;
 
+app.use(morgan('dev'))
+
 app.use(cors());
 
-app.use('/bundle.js', express.static('public/build/bundle.js'));
+app.use('/nearby/bundle.js', express.static('public/build/bundle.js'));
 
 app.use('/:id', express.static('public/'));
 
@@ -22,7 +26,7 @@ app.use('/:id', express.static('public/'));
  * 3 restaurant
  */
 
-app.get('/restaurants/:id', (req, res) => {
+app.get('/nearby/restaurants/:id', (req, res) => {
   if (req.params.id) {
     getRestaurant(req.params.id)
       .then((data) => {
@@ -35,7 +39,7 @@ app.get('/restaurants/:id', (req, res) => {
   }
 });
 
-app.get('/hotels/:id', (req, res) => {
+app.get('/nearby/hotels/:id', (req, res) => {
   if (req.params.id) {
     getHotel(req.params.id)
       .then((data) => {
@@ -48,7 +52,7 @@ app.get('/hotels/:id', (req, res) => {
   }
 });
 
-app.get('/attractions/:id', (req, res) => {
+app.get('/nearby/attractions/:id', (req, res) => {
   if (req.params.id) {
     getAttraction(req.params.id)
       .then((data) => {

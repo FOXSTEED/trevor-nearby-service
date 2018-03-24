@@ -1,8 +1,11 @@
 import axios from 'axios';
+require('dotenv').config();
 
 const getItem = (type, id) => (
   new Promise((resolve) => {
-    axios.get(`http://localhost:3003/${type}/${id}`) // refactor later
+    axios.get(`/nearby/${type}/${id}`, {
+      // baseURL: process.env.Url || 'http://localhost:3003'
+    })  // refactor later
       .then((item) => {
         resolve(item.data);
       })
@@ -13,6 +16,7 @@ const getItem = (type, id) => (
 );
 
 const getFourIds = id => (
+
   [(id + 1) % 200, (id + 2) % 200, (id + 3) % 200, (id + 4) % 200]
 );
 
