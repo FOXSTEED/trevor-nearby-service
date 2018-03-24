@@ -1,12 +1,16 @@
 require('newrelic');
+const morgan = require('morgan');
 const express = require('express');
 const { Restaurant, Hotel, Attraction } = require('../models/models.js');
 const { getAttraction, getHotel, getRestaurant } = require('../models/rawPg/pgModels');
 const cors = require('cors');
 require('dotenv').config();
 
+
 const app = express();
 const PORT = process.env.PORT || 3003;
+
+app.use(morgan('dev'))
 
 app.use(cors());
 

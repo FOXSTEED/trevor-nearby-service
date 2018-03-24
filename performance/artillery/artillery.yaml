@@ -11,6 +11,17 @@ config:
       phases:
         - duration: 120
           arrivalRate: 10
+    proxy:
+      target: "http://localhost"
+      phases:
+          - duration: 60
+            arrivalRate: 20
+          - duration: 120
+            arrivalRate: 5
+            rampTo: 500
+          - duration: 600
+            arrivalRate: 50
+            rampTo: 650
     staging: 
       target: "http://127.0.0.1:3003"
       phases:
@@ -19,8 +30,9 @@ config:
           - duration: 120
             arrivalRate: 5
             rampTo: 50
-          - duration: 600
-            arrivalRate: 50 
+          - duration: 300
+            arrivalRate: 100
+            rampTo: 500
   processor: "./artillery-config.js"
 
 scenarios:
@@ -28,9 +40,11 @@ scenarios:
     flow:
       - function: "randomNum"
       - get:
-          url: "/restaurants/{{ id }}"
+          url: "/{{ id }}/"
       - get:
-          url: "/hotels/{{ id }}"
+          url: "/nearby/restaurants/{{ id }}"
       - get:
-          url: "/attractions/{{ id }}"
-      - log: "Sent a request to /{{ id }} for {{ $environment.target }}"
+          url: "/nearby/hotels/{{ id }}"
+      - get:
+          url: "/nearby/attractions/{{ id }}"
+      # - log: "Sent a request to /{{ id }} for {{ $environment.target }}"
