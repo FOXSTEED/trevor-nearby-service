@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import ReviewBubble from './reviewBubble';
-import ReviewHalfBubble from './reviewHalfBubble';
-import ReviewEmptyBubble from './reviewEmptyBubble';
+import ReviewBubble from './reviewBubble.jsx';
+import ReviewHalfBubble from './reviewHalfBubble.jsx';
+import ReviewEmptyBubble from './reviewEmptyBubble.jsx';
 
 let lastKey = -1;
 const newKey = () => {

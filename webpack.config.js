@@ -1,37 +1,34 @@
 let path = require('path');
 const Dotenv = require('dotenv-webpack');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 let BUILD_DIR = path.resolve(__dirname, 'public/build');
 let APP_DIR = path.resolve(__dirname, 'client');
+let SERVER = path.resolve(__dirname, 'server');
 
 let config = {
-  entry: `${APP_DIR}/nearby.jsx`,
+  entry: `${APP_DIR}/browser.js`,
   output: {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?/,
-        include: APP_DIR,
+        include: [APP_DIR, SERVER],
         loader: 'babel-loader'
       },
       {
         test: /\.css$/,
-        loader: 'style-loader'
-      }, {
-        test: /\.css$/,
-        loader: 'css-loader',
-        query: {
-          modules: true,
-          localIdentName: '[name]__[local]___[hash:base64:5]'
-        }
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]"})
       }
     ],
   },
   plugins: [
-    new Dotenv()
+    new Dotenv(),
+    new ExtractTextPlugin("styles.css")     
   ],
   node: {
     fs: 'empty'
@@ -39,4 +36,51 @@ let config = {
   resolve: { extensions: ['.js', '.jsx'] }
 };
 
-module.exports = config;
+const common = {
+  context: __dirname + '/client',
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['react', 'es2015', 'env']
+        },
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loader: ExtractTextPlugin.extract({fallback: "style-loader", use: "css-loader?modules&importLoaders=1&localIdentName=[name]__[local]--[hash:base64:5]"})
+      },
+    ],
+  },
+  plugins: [
+      new Dotenv(),
+      new ExtractTextPlugin("styles.css"),
+  
+  ]
+};
+
+const client = {
+  entry: './client.js',
+  output: {
+    path: __dirname + '/proxy',
+    filename: 'app.js'
+  }
+};
+
+const server = {
+  entry: './server.js',
+  target: 'node',
+  output: {
+    path: __dirname + '/proxy',
+    filename: 'app-server.js',
+    libraryTarget: 'commonjs-module'
+  }
+};
+
+module.exports = [
+  Object.assign({}, common, client),
+  Object.assign({}, common, server)
+];

@@ -6,7 +6,7 @@
   <title>NOMAD/Nearby Component</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
+  <link rel="stylesheet" href="http://localhost:8000/styles.css">
   <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 </head>
@@ -21,9 +21,8 @@
           .replace('/', '')
         , 10
       );
-
     ReactDOM.render(
-      React.createElement(Nearby, {id: id}, null),
+      React.createElement(Nearby, {id: 1}, null),
       document.getElementById('nearby')
     );
   </script>

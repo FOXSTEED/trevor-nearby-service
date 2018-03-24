@@ -1,0 +1,100 @@
+.nearbyItem__nearbyItem--32RWI {
+  color: #4a4a4a;
+  vertical-align: top;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .nearbyItem__nearbyItem--32RWI {
+    display: flex;
+    width: 645px;
+  }
+}
+
+@media (min-width: 768px) {
+  .nearbyItem__nearbyItem--32RWI {
+    display: inline-flex;
+    width: 406px;
+  }
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__itemImage--39P4M {
+  background-color: #4a4a4a;
+  width: 94px;
+  height: 94px;
+  display: inline-block;
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__itemColumn--1DMJJ {
+  display: inline-block;
+  margin-top: 4px;
+  padding-left: 16px;
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__itemName--38JGQ {
+  display: block;
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__itemReviews--27kfg {
+  display: flex;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__reviewBubbles--2f2Se {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__itemReviews--27kfg .nearbyItem__reviewCount--2QwKx {
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
+.nearbyItem__nearbyItem--32RWI .nearbyItem__itemDistance--3v2ep {
+  display: block;
+  font-size: 12px;
+  padding-top: 6px;
+}.nearbyItems__nearbyItems--P3lQ4 {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.nearbyItems__nearbyItems--P3lQ4 .nearbyItems__sectionTitle--2BkJT {
+  font-size: 20px;
+}.nearbyMap__nearbyMap--1N5fx {
+  height: 224px;
+  width: 650px;
+  background-color: #dddddd;
+}
+
+.nearbyMap__nearbyMap--1N5fx .nearbyMap__map--89UD6 {
+  height: 100%;
+  width: 100%;
+  background-color: #dddddd;
+}/* Nearby component */
+.nearby__nearby--1XP94 {
+  font-family: Arial,Tahoma,"Bitstream Vera Sans",sans-serif;
+  color: #2c2c2c;
+  width: 814px;
+}
+
+/* Nearby header/title */
+.nearby__nearby--1XP94 .nearby__blockHeader--Id_xI {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.nearby__nearby--1XP94 .nearby__blockHeader--Id_xI .nearby__blockTitle--QRd2H {
+  color: #000a12;
+  font-size: 28px;
+  font-weight: 700;
+}
+.nearby__nearby--1XP94 .nearby__mapBlock--dtAmQ {
+  border-top: 1px solid #e5e5e5;
+  padding-top: 32px;
+  padding-bottom: 12px;
+}
