@@ -62,6 +62,7 @@ const common = {
   node: {
     fs: 'empty'
   },
+  resolve: { extensions: ['.js', '.jsx'] }
 };
 
 const client = {
