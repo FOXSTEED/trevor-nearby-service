@@ -19,10 +19,10 @@ app.use(morgan('dev'))
 
 app.use(cors());
 // app.use(express.static(path.join(__dirname, '../public')));
-app.use(express.static(path.join(__dirname, '../proxy')));
+app.use(express.static(path.join(__dirname, '../public')));
 // app.use('/nearby/bundle.js', express.static('public/build/bundle.js'));
 
-app.use('/:id', express.static('public/proxy/'));
+app.use('/:id', express.static('public/'));
 
 
 /**

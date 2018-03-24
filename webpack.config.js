@@ -58,14 +58,16 @@ const common = {
   plugins: [
       new Dotenv(),
       new ExtractTextPlugin("styles.css"),
-  
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  },
 };
 
 const client = {
   entry: './client.js',
   output: {
-    path: __dirname + '/proxy',
+    path: __dirname + '/public',
     filename: 'app.js'
   }
 };
@@ -74,7 +76,7 @@ const server = {
   entry: './server.js',
   target: 'node',
   output: {
-    path: __dirname + '/proxy',
+    path: __dirname + '/public',
     filename: 'app-server.js',
     libraryTarget: 'commonjs-module'
   }
