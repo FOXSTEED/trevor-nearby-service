@@ -1,5 +1,5 @@
 import axios from 'axios';
-require('dotenv').config();
+
 
 const getItem = (type, id) => (
   new Promise((resolve) => {
@@ -31,7 +31,7 @@ const getNearest = (type, id) => {
   return Promise.all(nearest);
 };
 
-const getData = async (id) => {
+const getData =  (id) => {
   let attraction = getItem('attractions', id);
   let hotels = getNearest('hotels', id);
   let restaurants = getNearest('restaurants', id);

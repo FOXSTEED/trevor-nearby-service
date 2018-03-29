@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import ReviewBubbles from './reviewBubbles/reviewBubbles';
+import ReviewBubbles from './reviewBubbles/reviewBubbles.jsx';
 import style from './nearbyItem.css';
 
 const renderReviews = (numReviews) => {

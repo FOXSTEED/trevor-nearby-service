@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import NearbyItems from './nearbyItems/nearbyItems';
-import NearbyMap from './nearbyMap/nearbyMap';
+import NearbyItems from './nearbyItems/nearbyItems.jsx';
+import NearbyMap from './nearbyMap/nearbyMap.jsx';
 import style from './nearby.css';
 
 const { getData } = require('./dataHelpers');
@@ -74,6 +74,5 @@ class Nearby extends React.Component {
   }
 }
 
-export default Nearby;
 
-window.Nearby = Nearby;
+export default Nearby;

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types, function-paren-newline */
 import React from 'react';
-import NearbyItem from './nearbyItem';
+import NearbyItem from './nearbyItem.jsx';
 import style from './nearbyItems.css';
 
 const NearbyItems = ({ type, items, getDistance }) => (

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types, no-unused-vars, no-undef */
 import React from 'react';
-import loadJS from './loadJS';
+import loadJS from './loadJS.js';
 import style from './nearbyMap.css';
 
 let { GOOGLE_MAPS_API_KEY } = process.env;
