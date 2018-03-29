@@ -6,6 +6,9 @@ npm
 npm-debug.log
 node_modules/
 
+## TEST RESULTS ##
+performance/artillery/Results
+
 pids
 *.pid
 logs
