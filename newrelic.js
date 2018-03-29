@@ -9,7 +9,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['trevor_nearby_service'],
+  app_name: ['trevor_nearby_service_dev'],
   /**
    * Your New Relic license key.
    */

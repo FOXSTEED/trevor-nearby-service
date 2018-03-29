@@ -5,7 +5,7 @@ config:
       - "id"
   environments:
     proxy:
-      target: "http://ec2-13-57-100-21.us-west-1.compute.amazonaws.com"
+      target: "http://tripadvisor-lb-840152425.us-west-1.elb.amazonaws.com"
       http:
         pool: 10
       phases:
@@ -23,7 +23,7 @@ scenarios:
       - loop:
         # - function: "randomNum"
         - get:
-            url: "/item/{{ id }}"
+            url: "/{{ id }}"
         # - get:
         #     url: "/nearby/restaurants/{{ id }}"
         # - get:
