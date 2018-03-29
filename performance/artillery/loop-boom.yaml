@@ -1,0 +1,34 @@
+config:
+  payload:
+    path: "payload.csv"
+    fields:
+      - "id"
+  environments:
+    microservice1:
+      target: "http://localhost:8000"
+      http:
+        pool: 10
+      phases:
+        # - duration: 30
+        #   arrivalRate: 10
+        #   rampTo: 50
+        #   name: "Warm up the application"
+        - duration: 60
+          arrivalRate: 5
+          name: "Redis 60 seconds loop 200"
+
+scenarios:
+  - name: "get nearby attractions/hotels/restaurants"
+    flow:
+      - loop:
+        # - function: "randomNum"
+        # - get:
+        #     url: "/item/{{ id }}"
+        - get:
+            url: "/nearby/restaurants/{{ id }}"
+        - get:
+            url: "/nearby/hotels/{{ id }}"
+        - get:
+            url: "/nearby/attractions/{{ id }}"
+        count: 200
+      # - log: "Sent a request to /{{ id }} for {{ $environment.target }}"

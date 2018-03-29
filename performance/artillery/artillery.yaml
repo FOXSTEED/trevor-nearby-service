@@ -11,17 +11,30 @@ config:
       phases:
         - duration: 120
           arrivalRate: 10
+    microservice:
+      target: "http://localhost:8000"
+      phases:
+        # - duration: 60
+        #   arrivalRate: 100
+        #   rampTo: 500
+        - duration: 120
+          arrivalRate: 10
+          rampTo: 50
+          name: "Warm up the application"
+        - duration: 600
+          arrivalRate: 50
+          name: "Sustained max load"
     proxy:
       target: "http://localhost"
       phases:
           - duration: 60
-            arrivalRate: 20
-          - duration: 120
-            arrivalRate: 5
-            rampTo: 500
-          - duration: 600
-            arrivalRate: 50
-            rampTo: 650
+            arrivalRate: 1000
+          # - duration: 120
+          #   arrivalRate: 5
+          #   rampTo: 500
+          # - duration: 600
+          #   arrivalRate: 50
+          #   rampTo: 650
     staging: 
       target: "http://127.0.0.1:3003"
       phases:
@@ -39,8 +52,8 @@ scenarios:
   - name: "get nearby attractions/hotels/restaurants"
     flow:
       - function: "randomNum"
-      - get:
-          url: "/{{ id }}/"
+      # - get:
+      #     url: "/item/{{ id }}"
       - get:
           url: "/nearby/restaurants/{{ id }}"
       - get:
