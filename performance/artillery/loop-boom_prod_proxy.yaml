@@ -9,13 +9,25 @@ config:
       http:
         pool: 10
       phases:
-        # - duration: 30
-        #   arrivalRate: 10
-        #   rampTo: 50
-        #   name: "Warm up the application"
-        - duration: 10
+        - duration: 30
+          arrivalRate: 20
+          name: "Two proxies Two Microservices"
+    microservice:
+      target: "http://tripadvisor-microservice-1753485592.us-west-1.elb.amazonaws.com"
+      http:
+        pool: 10
+      phases:
+        - duration: 30
+          arrivalRate: 15
+          name: "two microservice csr"
+    microserviceLb:
+      target: "http://tripadvisor-microservice-1753485592.us-west-1.elb.amazonaws.com"
+      http:
+        pool: 10
+      phases:
+        - duration: 300
           arrivalRate: 5
-          name: "Redis 60 seconds loop 200"
+          name: "two microservice csr"
 
 scenarios:
   - name: "get nearby attractions/hotels/restaurants"
@@ -24,11 +36,11 @@ scenarios:
         # - function: "randomNum"
         - get:
             url: "/{{ id }}"
-        # - get:
-        #     url: "/nearby/restaurants/{{ id }}"
-        # - get:
-        #     url: "/nearby/hotels/{{ id }}"
-        # - get:
-        #     url: "/nearby/attractions/{{ id }}"
-        count: 10
+        - get:
+            url: "/nearby/restaurants/{{ id }}"
+        - get:
+            url: "/nearby/hotels/{{ id }}"
+        - get:
+            url: "/nearby/attractions/{{ id }}"
+        count: 100
       # - log: "Sent a request to /{{ id }} for {{ $environment.target }}"
