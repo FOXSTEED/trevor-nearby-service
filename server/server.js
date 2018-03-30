@@ -49,7 +49,7 @@ app.get('/nearby/restaurants/:id', (req, res) => {
       console.log('not found in cache, making request');
       getRestaurant(req.params.id)
         .then((data) => {
-          client.setex(restaurantId, 3600, JSON.stringify(data));
+          client.setex(restaurantId, 60, JSON.stringify(data));
           res.send(data);
         })
         .catch((error) => {
@@ -72,7 +72,7 @@ app.get('/nearby/hotels/:id', (req, res) => {
       console.log('not found in cache, performing lookup');
       getHotel(req.params.id)
         .then((data) => {
-          client.setex(hotelId, 3600, JSON.stringify(data));
+          client.setex(hotelId, 60, JSON.stringify(data));
           res.send(data);
         })
         .catch((err) => {
@@ -93,7 +93,7 @@ app.get('/nearby/attractions/:id', (req, res) => {
       console.log('not found in cache, performing lookup');
       getAttraction(req.params.id)
         .then((data) => {
-          client.setex(attractionId, 3600, JSON.stringify(data));
+          client.setex(attractionId, 60, JSON.stringify(data));
           res.send(data);
         })
         .catch((err) => {
